@@ -13,6 +13,7 @@ public class Player {
         this.piece = piece;
     }
 
+    //encapsulation for some attributes
     public Piece getPiece() {
         return piece;
     }
