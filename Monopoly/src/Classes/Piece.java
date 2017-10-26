@@ -4,9 +4,10 @@ package Classes;
 public class Piece {
 
     private PieceShape shape;
-    //every piece has a square where it stays on
     private Square square;
     private int currentIndex;
+
+    public Piece() {}
 
     public Piece(PieceShape shape, Square square) {
         this.shape = shape;

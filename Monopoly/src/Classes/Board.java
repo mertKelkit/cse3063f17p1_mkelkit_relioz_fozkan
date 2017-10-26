@@ -8,8 +8,10 @@ import java.io.IOException;
 
 public class Board {
 
+
     public static final int SIZE = 40;
     public static final Square[] squares = getSquaresFromTextFile();
+
 
     public static Square[] getSquaresFromTextFile() {
         FileReader fileReader;
@@ -28,7 +30,6 @@ public class Board {
         } catch(IOException e) {
             System.err.println("Error reading file.");
         }
-        //creating each square objects
         int i = 0;
         for(String squareName : squareNames) {
             squares[i] = new Square(squareName);

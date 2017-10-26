@@ -4,12 +4,12 @@ package Classes;
 public class Player {
 
     private String name;
-    private int order;
+    private int turn;
     private Piece piece;
 
-    public Player(String name, int order, Piece piece) {
+    public Player(String name, int turn, Piece piece) {
         this.name = name;
-        this.order = order;
+        this.turn = turn;
         this.piece = piece;
     }
 
@@ -21,7 +21,11 @@ public class Player {
         return name;
     }
 
-    public int getOrder() {
-        return order;
+    public int getTurn() {
+        return turn;
+    }
+
+    protected void setTurn(int turn) {
+        this.turn = turn;
     }
 }
