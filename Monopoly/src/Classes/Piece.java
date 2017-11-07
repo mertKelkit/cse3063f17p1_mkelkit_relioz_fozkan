@@ -9,6 +9,8 @@ public class Piece {
     private Square square;
     private int currentIndex;
 
+    public Piece() {}
+
     public Piece(PieceShape shape, Square square) {
         this.shape = shape;
         this.square = square;

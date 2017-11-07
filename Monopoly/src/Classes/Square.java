@@ -1,7 +1,7 @@
 package Classes;
 
 
-public class Square {
+public abstract class Square {
 
     //name of the square
     private String name;

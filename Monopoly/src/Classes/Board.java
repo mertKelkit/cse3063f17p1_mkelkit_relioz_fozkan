@@ -19,14 +19,14 @@ public class Board {
         String[] squareNames = new String[SIZE];
         Square[] squares = new Square[SIZE];
         try {
-            fileReader = new FileReader("src/Resources/square_names.txt");
+            fileReader = new FileReader("Monopoly/src/Resources/square_names.txt");
             bufferedReader = new BufferedReader(fileReader);
             for(int i=0; i<SIZE; i++) {
                 squareNames[i] = bufferedReader.readLine();
             }
             bufferedReader.close();
         } catch(FileNotFoundException e) {
-            System.err.println("Unable to find text file.");
+            System.err.println("Unable to find text file. -class Board-");
         } catch(IOException e) {
             System.err.println("Error reading file.");
         }
