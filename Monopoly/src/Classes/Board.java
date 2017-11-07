@@ -33,7 +33,7 @@ public class Board {
         //creating each square objects
         int i = 0;
         for(String squareName : squareNames) {
-            squares[i] = new Square(squareName);
+            //squares[i] = new Square(squareName);
             i++;
         }
         return squares;
