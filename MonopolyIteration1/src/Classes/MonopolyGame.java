@@ -80,7 +80,7 @@ public class MonopolyGame {
             //Take a random piece shape for each player
             PieceShape shape = randomShape(shapeNames);
             //Then create Player instances with given names, turns, pieces with piece shapes and default starting squares
-            players[i] = new Player(playerNames[i], i+1, new Piece(shape, mainBoard.getSquare(0)), new Cash(200));
+            players[i] = new Player(playerNames[i], i+1, new Piece(shape, mainBoard.getSquare(0)));
         }
     }
 
@@ -126,7 +126,7 @@ public class MonopolyGame {
     public String[] getShapeNames() {
         String[] ret = new String[NUM_OF_PIECES];
         try {
-            FileReader fileReader = new FileReader("Monopoly/src/Resources/piece_shapes.txt");
+            FileReader fileReader = new FileReader("src/Resources/piece_shapes.txt");
             BufferedReader bufferedReader = new BufferedReader(fileReader);
             for(int i=0; i<NUM_OF_PIECES; i++) {
                 ret[i] = bufferedReader.readLine();
