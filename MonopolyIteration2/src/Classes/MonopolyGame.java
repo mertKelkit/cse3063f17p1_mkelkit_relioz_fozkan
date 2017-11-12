@@ -64,14 +64,18 @@ public class MonopolyGame {
 
     public void runSimulation(Calendar cal, SimpleDateFormat sdf, int numOfIterations, int choice) {
         printPieceOwners();
-        System.out.println("Game starts...");
+        System.out.println("\nGame starts...");
         //simulation types
         switch(choice) {
             //if simulation runs with delay
             case 1: {
                 int doubleCounter = 0;
+                int k = 0;
                 for(int i=0; i<numOfIterations; i++) {
                     for(int j=0; j<players.size(); j++) {
+                        if(k == j - 1)
+                            doubleCounter = 0;
+                        k = j;
                         printBorder(i+1, 100);
                         printWithDelay("Player " + players.get(j).getTurn() + " (" + players.get(j).getPiece().getShape() + ") is on " + players.get(j).getPiece().getSquare() + " square right now.", 100);
                         printWithDelay("Player " + players.get(j).getTurn() + " (a.k.a. " + players.get(j) + ") has " + players.get(j).getCash() + ".", 50);
@@ -84,11 +88,12 @@ public class MonopolyGame {
                                 + players.get(j).getPiece().getSquare(), 50);
                         printWithDelay("Player " + players.get(j).getTurn() + " (" + players.get(j).getPiece().getShape() + ") is on " +
                                 players.get(j).getPiece().getSquare() + " sqaure at " + sdf.format(cal.getTime()), 500);
+                        players.get(j).getPiece().getSquare().action(players.get(j));
                         if(die1.getFaceValue() == die2.getFaceValue()) {
+                            doubleCounter++;
                             if(doubleCounter == 3) {
-                                doubleCounter++;
                                 printWithDelay("Player " + players.get(j).getTurn() + " rolled double three times in a row. " + players.get(j) + " is going to jail right now!", 75);
-                                players.get(j).getPiece().moveTo(Board.squares[10]);
+                                players.get(j).getPiece().moveTo(mainBoard.squares[10]);
                                 players.get(j).setSuspended(true);
                                 break;
                             }
@@ -103,9 +108,13 @@ public class MonopolyGame {
             }
             //if simulation ends instantly
             case 2: {
-                int doubleDiceCounter = 0;
+                int doubleCounter = 0;
+                int k = 0;
                 for(int i=0; i<numOfIterations; i++) {
                     for(int j=0; j<players.size(); j++) {
+                        if(k == j - 1)
+                            doubleCounter = 0;
+                        k = j;
                         printBorder(i+1, 0);
                         System.out.println("Player " + players.get(j).getTurn() + " (" + players.get(j).getPiece().getShape() + ") is on " + players.get(j).getPiece().getSquare() + " square right now.");
                         System.out.println("Player " + players.get(j).getTurn() + " (a.k.a. " + players.get(j) + ") has " + players.get(j).getCash() + ".");
@@ -118,6 +127,18 @@ public class MonopolyGame {
                                 + players.get(j).getPiece().getSquare());
                         System.out.println("Player " + players.get(j).getTurn() + " (" + players.get(j).getPiece().getShape() + ") is on " +
                                 players.get(j).getPiece().getSquare() + " sqaure at " + sdf.format(cal.getTime()));
+                        players.get(j).getPiece().getSquare().action(players.get(j));
+                        if(die1.getFaceValue() == die2.getFaceValue()) {
+                            doubleCounter++;
+                            if(doubleCounter == 3) {
+                                printWithDelay("Player " + players.get(j).getTurn() + " rolled double three times in a row. " + players.get(j) + " is going to jail right now!", 75);
+                                players.get(j).getPiece().moveTo(mainBoard.squares[10]);
+                                players.get(j).setSuspended(true);
+                                break;
+                            }
+                            printWithDelay("Player " + players.get(j).getTurn() + " rolled a double. " + players.get(j) + " has the turn again...", 75);
+                            j--;
+                        }
                     }
                 }
                 System.out.println();
@@ -157,10 +178,10 @@ public class MonopolyGame {
 
     public void rollDiceForTurn() {
         ArrayList<Integer> diceValues = new ArrayList<>();
-        System.out.println("Players are rolling dice for turns...\n");
+        System.out.println("\nPlayers are rolling dice for turns...\n");
         for(int i=0; i<players.size(); i++) {
             int total = players.get(i).rollDice(die1, die2);
-            System.out.println("-" + players.get(i) + " rolled " + die1.getFaceValue() + "-" + die2.getFaceValue() + " Sum of dice: " + total);
+            System.out.println("-> " + players.get(i) + " rolled " + die1.getFaceValue() + "-" + die2.getFaceValue() + ". Sum of dice: " + total);
             System.out.println();
             diceValues.add(total);
         }

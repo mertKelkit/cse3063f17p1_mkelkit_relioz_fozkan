@@ -20,6 +20,6 @@ public abstract class Square {
     public void setIndex(int index) {
         this.index = index;
     }
-    public abstract void action();
+    public abstract void action(Player player);
 
 }

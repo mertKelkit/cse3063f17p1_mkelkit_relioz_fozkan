@@ -7,7 +7,7 @@ public class JailSquare extends Square {
         super(name);
     }
     @Override
-    public void action() {
-
+    public void action(Player player) {
+        System.out.println("Player " + player.getTurn() + " is just a visitor in here. " + player + " will start moving next turn.");
     }
 }

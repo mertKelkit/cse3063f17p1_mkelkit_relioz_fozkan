@@ -7,7 +7,7 @@ public class FreeParkingSquare extends Square {
     }
 
     @Override
-    public void action() {
-
+    public void action(Player player) {
+        System.out.println("Player " + player.getTurn() + " parked his/her piece until the next turn !!!");
     }
 }

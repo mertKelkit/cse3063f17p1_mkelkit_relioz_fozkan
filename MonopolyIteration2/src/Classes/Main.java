@@ -64,7 +64,7 @@ public class Main {
             //Take a random piece shape for each player
             PieceShape shape = randomShape(shapeNames);
             //Then create Player instances with given names, turns, pieces with piece shapes and default starting squares
-            players.add(new Player(playerNames[i], i+1, new Piece(shape, Board.getSquare(0))));
+            players.add(new Player(playerNames[i], i+1, new Piece(shape, Board.getSquare(0)), new Cash(200)));
         }
         return players;
     }
