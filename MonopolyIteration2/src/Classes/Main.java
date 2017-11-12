@@ -38,7 +38,7 @@ public class Main {
         String temp;
         //Getting names of players
         for(int i=0; i<numOfPlayers; i++) {
-            System.out.print("Enter a name for player: ");
+            System.out.print((i+1) + "- Enter a name for player: ");
             temp = sc.nextLine();
             //Checking current name with other names. If the name is already taken, program prints a warning message
             if(check(playerNames, temp))
