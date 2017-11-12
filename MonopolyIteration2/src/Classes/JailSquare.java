@@ -9,5 +9,6 @@ public class JailSquare extends Square {
     @Override
     public void action(Player player) {
         System.out.println("Player " + player.getTurn() + " is just a visitor in here. " + player + " will start moving next turn.");
+        System.out.println("Player " + player.getTurn() + " has " + player.getCash());
     }
 }

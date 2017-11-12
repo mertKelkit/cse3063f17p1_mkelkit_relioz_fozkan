@@ -1,9 +1,5 @@
 package Classes;
 
-import java.io.BufferedReader;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.*;
 import java.util.concurrent.TimeUnit;
@@ -66,19 +62,14 @@ public class MonopolyGame {
         printPieceOwners();
         System.out.println("\nGame starts...");
         //simulation types
+        int ctr = 0;
         switch(choice) {
             //if simulation runs with delay
             case 1: {
                 for(int i=0; i<numOfIterations; i++) {
+                    if(players.isEmpty())
+                        break;
                     for(int j=0; j<players.size(); j++) {
-                        if(!players.get(j).checkMoney()) {
-                            printWithDelay("Player " + players.get(j).getTurn() + " (a.k.a. " + players.get(j) + ") goes bankruptcy !", 25);
-                            players.remove(j);
-                            for(int l=j-1; l<players.size(); l++) {
-                                players.get(l).setTurn(players.get(l).getTurn()-1);
-                            }
-                            continue;
-                        }
                         if(!players.get(j).isSuspended()) {
                             printBorder(i + 1, 100);
                             printWithDelay("Player " + players.get(j).getTurn() + " (" + players.get(j).getPiece().getShape() + ") is on " + players.get(j).getPiece().getSquare() + " square right now.", 100);
@@ -93,6 +84,14 @@ public class MonopolyGame {
                             printWithDelay("Player " + players.get(j).getTurn() + " (" + players.get(j).getPiece().getShape() + ") is on " +
                                     players.get(j).getPiece().getSquare() + " sqaure at " + sdf.format(cal.getTime()), 500);
                             players.get(j).getPiece().getSquare().action(players.get(j));
+                            if(players.get(j).isBankrupt()) {
+                                players.remove(j);
+                                for(int l=0; l<players.size(); l++) {
+                                    players.get(l).setTurn(players.indexOf(players.get(l))+1);
+                                }
+                                j--;
+                                continue;
+                            }
                             if(die1.getFaceValue() == die2.getFaceValue()) {
                                 players.get(j).incrementDoubleCounter();
                                 if(players.get(j).getDoubleCounter() == 3) {
@@ -110,9 +109,18 @@ public class MonopolyGame {
                         else {
                             players.get(j).incrementSuspensionCounter();
                             if(players.get(j).getSuspensionCounter() == 3) {
+                                printBorder(i, 0);
                                 printWithDelay("This is Player " + players.get(j).getTurn() + "'s last turn in the jail...", 25);
                                 printWithDelay("Player " + players.get(j).getTurn() + " must pay 50$ to get out!", 25);
                                 players.get(j).getCash().dropCash(50l);
+                                if(players.get(j).getCash().getAmount() <= 0) {
+                                    System.out.println("Player " + players.get(j).getTurn() + " goes bankrupcy !");
+                                    players.remove(j);
+                                    for(int l=0; l<players.size(); l++) {
+                                        players.get(l).setTurn(players.indexOf(players.get(l))+1);
+                                    }
+                                    j--;
+                                }
                                 players.get(j).resetSuspensionCounter();
                                 players.get(j).setSuspended(false);
                                 j--;
@@ -152,6 +160,7 @@ public class MonopolyGame {
                             }
                         }
                     }
+                    ctr++;
                 }
                 System.out.println();
                 printBorder(0, 100);
@@ -160,15 +169,9 @@ public class MonopolyGame {
             //if simulation ends instantly
             case 2: {
                 for(int i=0; i<numOfIterations; i++) {
+                    if(players.isEmpty())
+                        break;
                     for(int j=0; j<players.size(); j++) {
-                        if(!players.get(j).checkMoney()) {
-                            System.out.println("Player " + players.get(j).getTurn() + " (a.k.a. " + players.get(j) + ") goes bankruptcy !");
-                            players.remove(j);
-                            for(int l=j; l<players.size(); l++) {
-                                players.get(l).setTurn(players.get(l).getTurn()-1);
-                            }
-                            continue;
-                        }
                         if(!players.get(j).isSuspended()) {
                             printBorder(i + 1, 0);
                             System.out.println("Player " + players.get(j).getTurn() + " (" + players.get(j).getPiece().getShape() + ") is on " + players.get(j).getPiece().getSquare() + " square right now.");
@@ -183,6 +186,14 @@ public class MonopolyGame {
                             System.out.println("Player " + players.get(j).getTurn() + " (" + players.get(j).getPiece().getShape() + ") is on " +
                                     players.get(j).getPiece().getSquare() + " sqaure at " + sdf.format(cal.getTime()));
                             players.get(j).getPiece().getSquare().action(players.get(j));
+                            if(players.get(j).isBankrupt()) {
+                                players.remove(j);
+                                for(int l=0; l<players.size(); l++) {
+                                    players.get(l).setTurn(players.indexOf(players.get(l))+1);
+                                }
+                                j--;
+                                continue;
+                            }
                             if (die1.getFaceValue() == die2.getFaceValue()) {
                                 players.get(j).incrementDoubleCounter();
                                 if (players.get(j).getDoubleCounter() == 3) {
@@ -203,6 +214,15 @@ public class MonopolyGame {
                                 System.out.println("This is Player " + players.get(j).getTurn() + "'s last turn in the jail...");
                                 System.out.println("Player " + players.get(j).getTurn() + " must pay 50$ to get out!");
                                 players.get(j).getCash().dropCash(50l);
+                                if(players.get(j).getCash().getAmount() <= 0) {
+                                    System.out.println("Player " + players.get(j).getTurn() + " goes bankrupcy !");
+                                    players.remove(j);
+                                    for(int l=0; l<players.size(); l++) {
+                                        players.get(l).setTurn(players.indexOf(players.get(l))+1);
+                                    }
+                                    j--;
+                                    continue;
+                                }
                                 players.get(j).resetSuspensionCounter();
                                 players.get(j).setSuspended(false);
                                 j--;
@@ -242,6 +262,7 @@ public class MonopolyGame {
                             }
                         }
                     }
+                    ctr++;
                 }
                 System.out.println();
                 printBorder(0, 0);
@@ -249,7 +270,7 @@ public class MonopolyGame {
             }
         }
         //end message
-        System.out.printf("\n%d iterations completed.\nGame ends...\n", numOfIterations);
+        System.out.printf("\n%d iterations completed.\nGame ends...\n", ctr);
     }
 
 
@@ -327,7 +348,7 @@ public class MonopolyGame {
     public boolean randomDecision(Player p) {
         Random rand = new Random();
         int dec = rand.nextInt(100);
-        if((p.getSuspensionCounter() < 2 && dec <= 40 && p.getCash().getAmount() >= 100) || (p.getSuspensionCounter() >= 2 && dec <= 20 && p.getCash().getAmount() >= 100)) {
+        if((p.getSuspensionCounter() < 2 && dec <= 40 && p.getCash().getAmount() >= 51) || (p.getSuspensionCounter() >= 2 && dec <= 20 && p.getCash().getAmount() >= 51)) {
             System.out.println("Player " + p.getTurn() + " chose to pay for going out.");
             p.getCash().dropCash(50l);
             return true;

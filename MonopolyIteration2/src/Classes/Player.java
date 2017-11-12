@@ -9,6 +9,7 @@ public class Player {
     private boolean isSuspended;
     private int suspensionCounter;
     private int doubleCounter;
+    private boolean isBankrupt;
 
     public Player(String name, int turn, Piece piece, Cash cash) {
         this.name = name;
@@ -18,6 +19,7 @@ public class Player {
         this.isSuspended = false;
         this.suspensionCounter = 0;
         this.doubleCounter = 0;
+        this.isBankrupt = false;
     }
 
     public int rollDice(Die die1, Die die2) {
@@ -83,5 +85,13 @@ public class Player {
 
     public void resetDoubleCounter() {
         doubleCounter = 0;
+    }
+
+    public void setBankrupt(boolean bankrupt) {
+        isBankrupt = bankrupt;
+    }
+
+    public boolean isBankrupt() {
+        return isBankrupt;
     }
 }
