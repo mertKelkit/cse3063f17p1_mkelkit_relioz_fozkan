@@ -157,8 +157,6 @@ public class MonopolyGame {
 
     public void rollDiceForTurn() {
         ArrayList<Integer> diceValues = new ArrayList<>();
-        ArrayList<Integer> doneIndexes = new ArrayList<>();
-        boolean quit = false;
         System.out.println("Players are rolling dice for turns...\n");
         for(int i=0; i<players.size(); i++) {
             int total = players.get(i).rollDice(die1, die2);
