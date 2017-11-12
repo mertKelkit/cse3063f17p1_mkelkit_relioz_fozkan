@@ -32,13 +32,27 @@ public class Board {
         //creating each square objects
         int i = 0;
         for(String squareName : squareNames) {
-            squares[i] = new Classes.Square(squareName);
+            if(i == 0)
+                squares[i] = new GoSquare(squareName);
+            else if(i == 4)
+                squares[i] = new IncomeTaxSquare(squareName);
+            else if(i == 10)
+                squares[i] = new JailSquare(squareName);
+            else if(i == 20)
+                squares[i] = new FreeParkingSquare(squareName);
+            else if(i == 30)
+                squares[i] = new GoToJailSquare(squareName);
+            else if(i == 38)
+                squares[i] = new LuxuryTaxSquare(squareName);
+            else
+                squares[i] = new RegularSquare(squareName);
+            squares[i].setIndex(i);
             i++;
         }
         return squares;
     }
 
-    //get method for Classes.Square
+    //get method for Square
     public static Square getSquare(int index) {
         return squares[index%SIZE];
     }

@@ -15,7 +15,7 @@ public class Die {
     }
 
     //generate a random number between 1 and 6
-    public void rollDie() {
+    public void setFaceValue() {
         faceValue = rand.nextInt(6) + 1;
     }
 
@@ -23,4 +23,5 @@ public class Die {
     public int getFaceValue() {
         return faceValue;
     }
+
 }

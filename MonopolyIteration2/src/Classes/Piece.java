@@ -21,9 +21,14 @@ public class Piece {
     }
 
     //the method which moves piece with given dice value
-    protected void moveTo(int diceValue) {
+    public void moveTo(int diceValue) {
         currentIndex += diceValue;
         this.square = Board.getSquare(currentIndex);
+    }
+
+    public void moveTo(Square square) {
+        this.square = square;
+        currentIndex = square.getIndex();
     }
 
     public Square getSquare() {
