@@ -87,7 +87,7 @@ public class Main {
     public static String[] getShapeNames() {
         String[] ret = new String[MonopolyGame.NUM_OF_PIECES];
         try {
-            FileReader fileReader = new FileReader("MonopolyIteration2/src/Resources/piece_shapes.txt");
+            FileReader fileReader = new FileReader("Monopoly/src/Resources/piece_shapes.txt");
             BufferedReader bufferedReader = new BufferedReader(fileReader);
             for(int i=0; i<MonopolyGame.NUM_OF_PIECES; i++) {
                 ret[i] = bufferedReader.readLine();
