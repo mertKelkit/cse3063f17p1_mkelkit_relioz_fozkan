@@ -3,8 +3,8 @@ package Classes;
 
 public class GoToJailSquare extends Square {
 
-    public GoToJailSquare(String name) {
-        super(name);
+    public GoToJailSquare(String name, int index) {
+        super(name, index);
     }
 
     @Override

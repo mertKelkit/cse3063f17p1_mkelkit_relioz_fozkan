@@ -3,8 +3,8 @@ package Classes;
 
 public class LuxuryTaxSquare extends Square {
 
-    public LuxuryTaxSquare(String name) {
-        super(name);
+    public LuxuryTaxSquare(String name, int index) {
+        super(name, index);
     }
 
     @Override

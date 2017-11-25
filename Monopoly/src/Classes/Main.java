@@ -18,6 +18,7 @@ public class Main {
         int numOfIterations = getNumOfIterations();
         MonopolyGame game = new MonopolyGame(players);
         game.startGame(numOfIterations);
+
     }
 
     public static int getNumberOfPlayers() {

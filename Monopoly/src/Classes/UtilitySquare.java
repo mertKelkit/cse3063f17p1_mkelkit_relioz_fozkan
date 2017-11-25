@@ -3,8 +3,8 @@ package Classes;
 
 public class UtilitySquare extends PurchasableSquare {
 
-    public UtilitySquare(String name) {
-        super(name);
+    public UtilitySquare(String name, int index) {
+        super(name, index);
     }
 
     @Override

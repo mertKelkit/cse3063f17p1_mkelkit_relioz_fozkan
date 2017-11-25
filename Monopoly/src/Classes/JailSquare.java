@@ -3,8 +3,8 @@ package Classes;
 
 public class JailSquare extends Square {
 
-    public JailSquare(String name) {
-        super(name);
+    public JailSquare(String name, int index) {
+        super(name, index);
     }
     @Override
     public void action(Player player) {

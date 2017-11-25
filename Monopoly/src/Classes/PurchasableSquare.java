@@ -3,13 +3,14 @@ package Classes;
 
 public abstract class PurchasableSquare extends Square {
 
-    private int cost;
+    private int price;
     private int rent;
     private boolean hasOwner;
     private Player owner;
+    private int index;
 
-    public PurchasableSquare(String name) {
-        super(name);
+    public PurchasableSquare(String name, int index) {
+        super(name, index);
         this.hasOwner = false;
     }
 
@@ -29,12 +30,12 @@ public abstract class PurchasableSquare extends Square {
         this.owner = owner;
     }
 
-    public int getCost() {
-        return cost;
+    public int getPrice() {
+        return price;
     }
 
-    public void setCost(int cost) {
-        this.cost = cost;
+    public void setPrice(int price) {
+        this.price = price;
     }
 
     public boolean isHasOwner() {

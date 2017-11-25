@@ -3,8 +3,8 @@ package Classes;
 
 public class RegularSquare extends Square {
 
-    public RegularSquare(String name) {
-        super(name);
+    public RegularSquare(String name, int index) {
+        super(name, index);
     }
 
     @Override

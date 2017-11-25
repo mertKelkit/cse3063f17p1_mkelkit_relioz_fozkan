@@ -106,7 +106,7 @@ public class Player {
 
     public void purchaseSquare(Die die, PurchasableSquare square) {
         this.rollDie(die);
-        if(die.getFaceValue() > 4 && this.getCash().getAmount() - square.getCost() > 0) {
+        if(die.getFaceValue() > 4 && this.getCash().getAmount() - square.getPrice() > 0) {
             ownedSquares.add(square);
             square.setHasOwner(true);
             square.setOwner(this);

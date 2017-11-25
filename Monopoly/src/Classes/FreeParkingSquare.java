@@ -2,8 +2,8 @@ package Classes;
 
 public class FreeParkingSquare extends Square {
 
-    public FreeParkingSquare(String name) {
-        super(name);
+    public FreeParkingSquare(String name, int index) {
+        super(name, index);
     }
 
     @Override

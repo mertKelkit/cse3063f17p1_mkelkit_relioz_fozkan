@@ -3,8 +3,8 @@ package Classes;
 
 public class RailRoadSquare extends PurchasableSquare {
 
-    public RailRoadSquare(String name) {
-        super(name);
+    public RailRoadSquare(String name, int index) {
+        super(name, index);
     }
 
     @Override

@@ -3,8 +3,8 @@ package Classes;
 
 public class LotSquare extends PurchasableSquare {
 
-    public LotSquare(String name) {
-        super(name);
+    public LotSquare(String name, int index) {
+        super(name, index);
     }
 
     @Override
