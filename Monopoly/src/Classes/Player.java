@@ -1,5 +1,8 @@
 package Classes;
 
+
+import java.util.ArrayList;
+
 public class Player {
 
     private String name;
@@ -10,6 +13,7 @@ public class Player {
     private int suspensionCounter;
     private int doubleCounter;
     private boolean isBankrupt;
+    private ArrayList<PurchasableSquare> ownedSquares;
 
     public Player(String name, int turn, Piece piece, Cash cash) {
         this.name = name;
@@ -20,6 +24,7 @@ public class Player {
         this.suspensionCounter = 0;
         this.doubleCounter = 0;
         this.isBankrupt = false;
+        this.ownedSquares = new ArrayList<>();
     }
 
     public int rollDice(Die die1, Die die2) {
@@ -28,6 +33,10 @@ public class Player {
         return die1.getFaceValue() + die2.getFaceValue();
     }
 
+    public int rollDie(Die die) {
+        die.setFaceValue();
+        return die.getFaceValue();
+    }
     //encapsulation for some attributes
     public Piece getPiece() {
         return piece;
@@ -94,4 +103,14 @@ public class Player {
     public boolean isBankrupt() {
         return isBankrupt;
     }
+
+    public void purchaseSquare(Die die, PurchasableSquare square) {
+        this.rollDie(die);
+        if(die.getFaceValue() > 4 && this.getCash().getAmount() - square.getCost() > 0) {
+            ownedSquares.add(square);
+            square.setHasOwner(true);
+            square.setOwner(this);
+        }
+    }
+
 }
