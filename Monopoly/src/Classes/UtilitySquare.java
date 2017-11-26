@@ -1,9 +1,6 @@
 package Classes;
 
 
-import java.io.FileWriter;
-import java.io.PrintWriter;
-
 public class UtilitySquare extends PurchasableSquare {
 
     public UtilitySquare(String name, int index) {

@@ -1,7 +1,6 @@
 package Classes;
 
 
-import java.io.PrintWriter;
 
 public class GoToJailSquare extends Square {
 

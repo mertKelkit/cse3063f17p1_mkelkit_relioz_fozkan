@@ -1,0 +1,1000 @@
+Number of players must be between 2 and 8. Enter number of players: Observer entered 3
+1- Enter a name for player: Observer entered mert
+2- Enter a name for player: Observer entered ferhat
+3- Enter a name for player: Observer entered rümeysa
+Please enter initial cash for players: Observer entered 400
+Enter the number of iterations: Observer entered 30
+
+Players are rolling dice for turns...
+
+-> mert rolled 4-5. Sum of dice: 9
+
+-> ferhat rolled 1-2. Sum of dice: 3
+
+-> rümeysa rolled 2-5. Sum of dice: 7
+
+mert is the Player 1!
+
+rümeysa is the Player 2!
+
+ferhat is the Player 3!
+
+-----------------------------------------------------------
+Player 1 (a.k.a. mert) picks Cat!
+Player 2 (a.k.a. rümeysa) picks Rubber Ducky!
+Player 3 (a.k.a. ferhat) picks Penguin!
+-----------------------------------------------------------
+
+Game starts...
+
+----------------------- Iteration 1 -----------------------
+
+Player 1 (Cat) is on GoSquare square right now.
+Player 1 (a.k.a. mert) has 400$.
+Player 1 (a.k.a. mert) is rolling dice...
+Player 1 dice values: 3-2 Sum of dice: 5
+
+Player 1 is moving to RailRoad1
+Player 1 (Cat) is on RailRoad1 sqaure at 12:02:42
+RailRoad1's price is 200$.
+Player 1 purchased RailRoad1.
+Player 1 (a.k.a. mert) has 200$ right now.
+
+----------------------- Iteration 1 -----------------------
+
+Player 2 (Rubber Ducky) is on GoSquare square right now.
+Player 2 (a.k.a. rümeysa) has 400$.
+Player 2 (a.k.a. rümeysa) is rolling dice...
+Player 2 dice values: 4-4 Sum of dice: 8
+
+Player 2 is moving to Square9
+Player 2 (Rubber Ducky) is on Square9 sqaure at 12:02:42
+Square9's price is 100$.
+Player 2 purchased Square9.
+Player 2 (a.k.a. rümeysa) has 300$ right now.
+Player 2 rolled a double. rümeysa has the turn again...
+
+----------------------- Iteration 1 -----------------------
+
+Player 2 (Rubber Ducky) is on Square9 square right now.
+Player 2 (a.k.a. rümeysa) has 300$.
+Player 2 (a.k.a. rümeysa) is rolling dice...
+Player 2 dice values: 5-1 Sum of dice: 6
+
+Player 2 is moving to Square15
+Player 2 (Rubber Ducky) is on Square15 sqaure at 12:02:42
+Square15's price is 160$.
+Player 2 purchased Square15.
+Player 2 (a.k.a. rümeysa) has 140$ right now.
+
+----------------------- Iteration 1 -----------------------
+
+Player 3 (Penguin) is on GoSquare square right now.
+Player 3 (a.k.a. ferhat) has 400$.
+Player 3 (a.k.a. ferhat) is rolling dice...
+Player 3 dice values: 5-6 Sum of dice: 11
+
+Player 3 is moving to Square12
+Player 3 (Penguin) is on Square12 sqaure at 12:02:42
+Square12's price is 140$.
+Player 3 decided not to purchase Square12!
+Player 3 (a.k.a. ferhat) has 400$ right now.
+
+----------------------- Iteration 2 -----------------------
+
+Player 1 (Cat) is on RailRoad1 square right now.
+Player 1 (a.k.a. mert) has 200$.
+Player 1 (a.k.a. mert) is rolling dice...
+Player 1 dice values: 6-6 Sum of dice: 12
+
+Player 1 is moving to CommunityChest
+Player 1 (Cat) is on CommunityChest sqaure at 12:02:42
+Player 1 has 200$
+Player 1 rolled a double. mert has the turn again...
+
+----------------------- Iteration 2 -----------------------
+
+Player 1 (Cat) is on CommunityChest square right now.
+Player 1 (a.k.a. mert) has 200$.
+Player 1 (a.k.a. mert) is rolling dice...
+Player 1 dice values: 6-4 Sum of dice: 10
+
+Player 1 is moving to Square28
+Player 1 (Cat) is on Square28 sqaure at 12:02:42
+Square28's price is 260$.
+Player 1 decided not to purchase Square28!
+Player 1 (a.k.a. mert) has 200$ right now.
+
+----------------------- Iteration 2 -----------------------
+
+Player 2 (Rubber Ducky) is on Square15 square right now.
+Player 2 (a.k.a. rümeysa) has 140$.
+Player 2 (a.k.a. rümeysa) is rolling dice...
+Player 2 dice values: 4-2 Sum of dice: 6
+
+Player 2 is moving to FreeParkingSquare
+Player 2 (Rubber Ducky) is on FreeParkingSquare sqaure at 12:02:42
+Player 2 parked his/her piece until the next turn !!!
+Player 2 has 140$
+
+----------------------- Iteration 2 -----------------------
+
+Player 3 (Penguin) is on Square12 square right now.
+Player 3 (a.k.a. ferhat) has 400$.
+Player 3 (a.k.a. ferhat) is rolling dice...
+Player 3 dice values: 1-1 Sum of dice: 2
+
+Player 3 is moving to Square14
+Player 3 (Penguin) is on Square14 sqaure at 12:02:42
+Square14's price is 140$.
+Player 3 decided not to purchase Square14!
+Player 3 (a.k.a. ferhat) has 400$ right now.
+Player 3 rolled a double. ferhat has the turn again...
+
+----------------------- Iteration 2 -----------------------
+
+Player 3 (Penguin) is on Square14 square right now.
+Player 3 (a.k.a. ferhat) has 400$.
+Player 3 (a.k.a. ferhat) is rolling dice...
+Player 3 dice values: 3-2 Sum of dice: 5
+
+Player 3 is moving to Square19
+Player 3 (Penguin) is on Square19 sqaure at 12:02:42
+Square19's price is 180$.
+Player 3 decided not to purchase Square19!
+Player 3 (a.k.a. ferhat) has 400$ right now.
+
+----------------------- Iteration 3 -----------------------
+
+Player 1 (Cat) is on Square28 square right now.
+Player 1 (a.k.a. mert) has 200$.
+Player 1 (a.k.a. mert) is rolling dice...
+Player 1 dice values: 1-6 Sum of dice: 7
+
+Player 1 is moving to Square35
+Player 1 (Cat) is on Square35 sqaure at 12:02:42
+Square35's price is 320$.
+Player 1 doesn't have enough money to purchase Square35!
+Player 1 (a.k.a. mert) has 200$ right now.
+
+----------------------- Iteration 3 -----------------------
+
+Player 2 (Rubber Ducky) is on FreeParkingSquare square right now.
+Player 2 (a.k.a. rümeysa) has 140$.
+Player 2 (a.k.a. rümeysa) is rolling dice...
+Player 2 dice values: 4-6 Sum of dice: 10
+
+Player 2 is moving to GoToJailSquare
+Player 2 (Rubber Ducky) is on GoToJailSquare sqaure at 12:02:42
+Oh no ! Player 2 must go to the jail square now !
+Player 2 (a.k.a. rümeysa) is on Jail Square right now. 
+Player 2 has 140$
+
+----------------------- Iteration 3 -----------------------
+
+Player 3 (Penguin) is on Square19 square right now.
+Player 3 (a.k.a. ferhat) has 400$.
+Player 3 (a.k.a. ferhat) is rolling dice...
+Player 3 dice values: 6-5 Sum of dice: 11
+
+Player 3 is moving to Square30
+Player 3 (Penguin) is on Square30 sqaure at 12:02:42
+Square30's price is 280$.
+Player 3 purchased Square30.
+Player 3 (a.k.a. ferhat) has 120$ right now.
+
+----------------------- Iteration 4 -----------------------
+
+Player 1 (Cat) is on Square35 square right now.
+Player 1 (a.k.a. mert) has 200$.
+Player 1 (a.k.a. mert) is rolling dice...
+Player 1 dice values: 5-2 Sum of dice: 7
+
+Player 1 is moving to Square2
+Player 1 (Cat) is on Square2 sqaure at 12:02:42
+Square2's price is 60$.
+Player 1 purchased Square2.
+Player 1 (a.k.a. mert) has 140$ right now.
+
+----------------------- Iteration 3 -----------------------
+
+Player 2 is on JailSquare right now.
+Player 2 has two decisions. S/he can pay 50$ to get out or can try rolling dice to double !
+Player 2 chose to pay for going out.
+Now Player 2 has 90$.
+
+----------------------- Iteration 4 -----------------------
+
+Player 2 (Rubber Ducky) is on JailSquare square right now.
+Player 2 (a.k.a. rümeysa) has 90$.
+Player 2 (a.k.a. rümeysa) is rolling dice...
+Player 2 dice values: 4-5 Sum of dice: 9
+
+Player 2 is moving to Square20
+Player 2 (Rubber Ducky) is on Square20 sqaure at 12:02:42
+Square20's price is 200$.
+Player 2 decided not to purchase Square20!
+Player 2 (a.k.a. rümeysa) has 90$ right now.
+
+----------------------- Iteration 4 -----------------------
+
+Player 3 (Penguin) is on Square30 square right now.
+Player 3 (a.k.a. ferhat) has 120$.
+Player 3 (a.k.a. ferhat) is rolling dice...
+Player 3 dice values: 4-1 Sum of dice: 5
+
+Player 3 is moving to Square35
+Player 3 (Penguin) is on Square35 sqaure at 12:02:42
+Square35's price is 320$.
+Player 3 decided not to purchase Square35!
+Player 3 (a.k.a. ferhat) has 120$ right now.
+
+----------------------- Iteration 5 -----------------------
+
+Player 1 (Cat) is on Square2 square right now.
+Player 1 (a.k.a. mert) has 140$.
+Player 1 (a.k.a. mert) is rolling dice...
+Player 1 dice values: 1-3 Sum of dice: 4
+
+Player 1 is moving to RailRoad1
+Player 1 (Cat) is on RailRoad1 sqaure at 12:02:42
+
+----------------------- Iteration 5 -----------------------
+
+Player 2 (Rubber Ducky) is on Square20 square right now.
+Player 2 (a.k.a. rümeysa) has 90$.
+Player 2 (a.k.a. rümeysa) is rolling dice...
+Player 2 dice values: 1-4 Sum of dice: 5
+
+Player 2 is moving to Square25
+Player 2 (Rubber Ducky) is on Square25 sqaure at 12:02:42
+Square25's price is 240$.
+Player 2 decided not to purchase Square25!
+Player 2 (a.k.a. rümeysa) has 90$ right now.
+
+----------------------- Iteration 5 -----------------------
+
+Player 3 (Penguin) is on Square35 square right now.
+Player 3 (a.k.a. ferhat) has 120$.
+Player 3 (a.k.a. ferhat) is rolling dice...
+Player 3 dice values: 4-3 Sum of dice: 7
+
+Player 3 is moving to Square2
+Player 3 (Penguin) is on Square2 sqaure at 12:02:42
+Square2 owned by mert. ferhat has to pay 2$.
+Player 3 has paid 2$ to Player 1.
+Player 3 has 118$.
+
+----------------------- Iteration 6 -----------------------
+
+Player 1 (Cat) is on RailRoad1 square right now.
+Player 1 (a.k.a. mert) has 142$.
+Player 1 (a.k.a. mert) is rolling dice...
+Player 1 dice values: 5-3 Sum of dice: 8
+
+Player 1 is moving to Square14
+Player 1 (Cat) is on Square14 sqaure at 12:02:42
+Square14's price is 140$.
+Player 1 decided not to purchase Square14!
+Player 1 (a.k.a. mert) has 142$ right now.
+
+----------------------- Iteration 6 -----------------------
+
+Player 2 (Rubber Ducky) is on Square25 square right now.
+Player 2 (a.k.a. rümeysa) has 90$.
+Player 2 (a.k.a. rümeysa) is rolling dice...
+Player 2 dice values: 3-5 Sum of dice: 8
+
+Player 2 is moving to Square33
+Player 2 (Rubber Ducky) is on Square33 sqaure at 12:02:42
+Square33's price is 300$.
+Player 2 doesn't have enough money to purchase Square33!
+Player 2 (a.k.a. rümeysa) has 90$ right now.
+
+----------------------- Iteration 6 -----------------------
+
+Player 3 (Penguin) is on Square2 square right now.
+Player 3 (a.k.a. ferhat) has 118$.
+Player 3 (a.k.a. ferhat) is rolling dice...
+Player 3 dice values: 4-5 Sum of dice: 9
+
+Player 3 is moving to JailSquare
+Player 3 (Penguin) is on JailSquare sqaure at 12:02:42
+Player 3 is just a visitor in here. ferhat will start moving next turn.
+Player 3 has 118$
+
+----------------------- Iteration 7 -----------------------
+
+Player 1 (Cat) is on Square14 square right now.
+Player 1 (a.k.a. mert) has 142$.
+Player 1 (a.k.a. mert) is rolling dice...
+Player 1 dice values: 2-6 Sum of dice: 8
+
+Player 1 is moving to Square22
+Player 1 (Cat) is on Square22 sqaure at 12:02:42
+Square22's price is 220$.
+Player 1 doesn't have enough money to purchase Square22!
+Player 1 (a.k.a. mert) has 142$ right now.
+
+----------------------- Iteration 7 -----------------------
+
+Player 2 (Rubber Ducky) is on Square33 square right now.
+Player 2 (a.k.a. rümeysa) has 90$.
+Player 2 (a.k.a. rümeysa) is rolling dice...
+Player 2 dice values: 1-5 Sum of dice: 6
+
+Player 2 is moving to LuxuryTaxSquare
+Player 2 (Rubber Ducky) is on LuxuryTaxSquare sqaure at 12:02:42
+Player 2 must pay 75$ to the bank because of luxury tax !!
+Player 2 (a.k.a. rümeysa) paid the luxury tax.
+Now Player 2 has 15$
+
+----------------------- Iteration 7 -----------------------
+
+Player 3 (Penguin) is on JailSquare square right now.
+Player 3 (a.k.a. ferhat) has 118$.
+Player 3 (a.k.a. ferhat) is rolling dice...
+Player 3 dice values: 4-1 Sum of dice: 5
+
+Player 3 is moving to RailRoad2
+Player 3 (Penguin) is on RailRoad2 sqaure at 12:02:42
+RailRoad2's price is 200$.
+Player 3 doesn't have enough money to purchase RailRoad2!
+Player 3 (a.k.a. ferhat) has 118$ right now.
+
+----------------------- Iteration 8 -----------------------
+
+Player 1 (Cat) is on Square22 square right now.
+Player 1 (a.k.a. mert) has 142$.
+Player 1 (a.k.a. mert) is rolling dice...
+Player 1 dice values: 5-6 Sum of dice: 11
+
+Player 1 is moving to Square33
+Player 1 (Cat) is on Square33 sqaure at 12:02:42
+Square33's price is 300$.
+Player 1 doesn't have enough money to purchase Square33!
+Player 1 (a.k.a. mert) has 142$ right now.
+
+----------------------- Iteration 8 -----------------------
+
+Player 2 (Rubber Ducky) is on LuxuryTaxSquare square right now.
+Player 2 (a.k.a. rümeysa) has 15$.
+Player 2 (a.k.a. rümeysa) is rolling dice...
+Player 2 dice values: 4-1 Sum of dice: 5
+
+Player 2 is moving to Square4
+Player 2 (Rubber Ducky) is on Square4 sqaure at 12:02:42
+Square4's price is 60$.
+Player 2 decided not to purchase Square4!
+Player 2 (a.k.a. rümeysa) has 15$ right now.
+
+----------------------- Iteration 8 -----------------------
+
+Player 3 (Penguin) is on RailRoad2 square right now.
+Player 3 (a.k.a. ferhat) has 118$.
+Player 3 (a.k.a. ferhat) is rolling dice...
+Player 3 dice values: 3-2 Sum of dice: 5
+
+Player 3 is moving to FreeParkingSquare
+Player 3 (Penguin) is on FreeParkingSquare sqaure at 12:02:42
+Player 3 parked his/her piece until the next turn !!!
+Player 3 has 118$
+
+----------------------- Iteration 9 -----------------------
+
+Player 1 (Cat) is on Square33 square right now.
+Player 1 (a.k.a. mert) has 142$.
+Player 1 (a.k.a. mert) is rolling dice...
+Player 1 dice values: 5-1 Sum of dice: 6
+
+Player 1 is moving to LuxuryTaxSquare
+Player 1 (Cat) is on LuxuryTaxSquare sqaure at 12:02:42
+Player 1 must pay 75$ to the bank because of luxury tax !!
+Player 1 (a.k.a. mert) paid the luxury tax.
+Now Player 1 has 67$
+
+----------------------- Iteration 9 -----------------------
+
+Player 2 (Rubber Ducky) is on Square4 square right now.
+Player 2 (a.k.a. rümeysa) has 15$.
+Player 2 (a.k.a. rümeysa) is rolling dice...
+Player 2 dice values: 4-3 Sum of dice: 7
+
+Player 2 is moving to JailSquare
+Player 2 (Rubber Ducky) is on JailSquare sqaure at 12:02:42
+Player 2 is just a visitor in here. rümeysa will start moving next turn.
+Player 2 has 15$
+
+----------------------- Iteration 9 -----------------------
+
+Player 3 (Penguin) is on FreeParkingSquare square right now.
+Player 3 (a.k.a. ferhat) has 118$.
+Player 3 (a.k.a. ferhat) is rolling dice...
+Player 3 dice values: 5-2 Sum of dice: 7
+
+Player 3 is moving to Square28
+Player 3 (Penguin) is on Square28 sqaure at 12:02:42
+Square28's price is 260$.
+Player 3 decided not to purchase Square28!
+Player 3 (a.k.a. ferhat) has 118$ right now.
+
+----------------------- Iteration 10 -----------------------
+
+Player 1 (Cat) is on LuxuryTaxSquare square right now.
+Player 1 (a.k.a. mert) has 67$.
+Player 1 (a.k.a. mert) is rolling dice...
+Player 1 dice values: 5-4 Sum of dice: 9
+
+Player 1 is moving to Chance
+Player 1 (Cat) is on Chance sqaure at 12:02:42
+Player 1 has 67$
+
+----------------------- Iteration 10 -----------------------
+
+Player 2 (Rubber Ducky) is on JailSquare square right now.
+Player 2 (a.k.a. rümeysa) has 15$.
+Player 2 (a.k.a. rümeysa) is rolling dice...
+Player 2 dice values: 4-6 Sum of dice: 10
+
+Player 2 is moving to FreeParkingSquare
+Player 2 (Rubber Ducky) is on FreeParkingSquare sqaure at 12:02:42
+Player 2 parked his/her piece until the next turn !!!
+Player 2 has 15$
+
+----------------------- Iteration 10 -----------------------
+
+Player 3 (Penguin) is on Square28 square right now.
+Player 3 (a.k.a. ferhat) has 118$.
+Player 3 (a.k.a. ferhat) is rolling dice...
+Player 3 dice values: 4-5 Sum of dice: 9
+
+Player 3 is moving to Chance
+Player 3 (Penguin) is on Chance sqaure at 12:02:42
+Player 3 has 118$
+
+----------------------- Iteration 11 -----------------------
+
+Player 1 (Cat) is on Chance square right now.
+Player 1 (a.k.a. mert) has 67$.
+Player 1 (a.k.a. mert) is rolling dice...
+Player 1 dice values: 5-4 Sum of dice: 9
+
+Player 1 is moving to Square17
+Player 1 (Cat) is on Square17 sqaure at 12:02:42
+Square17's price is 180$.
+Player 1 doesn't have enough money to purchase Square17!
+Player 1 (a.k.a. mert) has 67$ right now.
+
+----------------------- Iteration 11 -----------------------
+
+Player 2 (Rubber Ducky) is on FreeParkingSquare square right now.
+Player 2 (a.k.a. rümeysa) has 15$.
+Player 2 (a.k.a. rümeysa) is rolling dice...
+Player 2 dice values: 1-4 Sum of dice: 5
+
+Player 2 is moving to RailRoad3
+Player 2 (Rubber Ducky) is on RailRoad3 sqaure at 12:02:42
+RailRoad3's price is 200$.
+Player 2 doesn't have enough money to purchase RailRoad3!
+Player 2 (a.k.a. rümeysa) has 15$ right now.
+
+----------------------- Iteration 11 -----------------------
+
+Player 3 (Penguin) is on Chance square right now.
+Player 3 (a.k.a. ferhat) has 118$.
+Player 3 (a.k.a. ferhat) is rolling dice...
+Player 3 dice values: 2-6 Sum of dice: 8
+
+Player 3 is moving to IncomeTaxSquare
+Player 3 (Penguin) is on IncomeTaxSquare sqaure at 12:02:42
+Player 3 has to pay %10 of his/her money to the bank.
+Player 3 (a.k.a. ferhat) paid the income tax. 
+Now Player 3 has 107$
+
+----------------------- Iteration 12 -----------------------
+
+Player 1 (Cat) is on Square17 square right now.
+Player 1 (a.k.a. mert) has 67$.
+Player 1 (a.k.a. mert) is rolling dice...
+Player 1 dice values: 5-4 Sum of dice: 9
+
+Player 1 is moving to RailRoad3
+Player 1 (Cat) is on RailRoad3 sqaure at 12:02:42
+RailRoad3's price is 200$.
+Player 1 decided not to purchase RailRoad3!
+Player 1 (a.k.a. mert) has 67$ right now.
+
+----------------------- Iteration 12 -----------------------
+
+Player 2 (Rubber Ducky) is on RailRoad3 square right now.
+Player 2 (a.k.a. rümeysa) has 15$.
+Player 2 (a.k.a. rümeysa) is rolling dice...
+Player 2 dice values: 4-3 Sum of dice: 7
+
+Player 2 is moving to Square33
+Player 2 (Rubber Ducky) is on Square33 sqaure at 12:02:42
+Square33's price is 300$.
+Player 2 doesn't have enough money to purchase Square33!
+Player 2 (a.k.a. rümeysa) has 15$ right now.
+
+----------------------- Iteration 12 -----------------------
+
+Player 3 (Penguin) is on IncomeTaxSquare square right now.
+Player 3 (a.k.a. ferhat) has 107$.
+Player 3 (a.k.a. ferhat) is rolling dice...
+Player 3 dice values: 4-1 Sum of dice: 5
+
+Player 3 is moving to Square10
+Player 3 (Penguin) is on Square10 sqaure at 12:02:42
+Square10's price is 120$.
+Player 3 doesn't have enough money to purchase Square10!
+Player 3 (a.k.a. ferhat) has 107$ right now.
+
+----------------------- Iteration 13 -----------------------
+
+Player 1 (Cat) is on RailRoad3 square right now.
+Player 1 (a.k.a. mert) has 67$.
+Player 1 (a.k.a. mert) is rolling dice...
+Player 1 dice values: 3-1 Sum of dice: 4
+
+Player 1 is moving to Square30
+Player 1 (Cat) is on Square30 sqaure at 12:02:42
+Square30 owned by ferhat. mert has to pay 24$.
+Player 1 has paid 24$ to Player 3.
+Player 1 has 43$.
+
+----------------------- Iteration 13 -----------------------
+
+Player 2 (Rubber Ducky) is on Square33 square right now.
+Player 2 (a.k.a. rümeysa) has 15$.
+Player 2 (a.k.a. rümeysa) is rolling dice...
+Player 2 dice values: 2-3 Sum of dice: 5
+
+Player 2 is moving to Square38
+Player 2 (Rubber Ducky) is on Square38 sqaure at 12:02:42
+Square38's price is 350$.
+Player 2 decided not to purchase Square38!
+Player 2 (a.k.a. rümeysa) has 15$ right now.
+
+----------------------- Iteration 13 -----------------------
+
+Player 3 (Penguin) is on Square10 square right now.
+Player 3 (a.k.a. ferhat) has 131$.
+Player 3 (a.k.a. ferhat) is rolling dice...
+Player 3 dice values: 4-6 Sum of dice: 10
+
+Player 3 is moving to Square20
+Player 3 (Penguin) is on Square20 sqaure at 12:02:42
+Square20's price is 200$.
+Player 3 doesn't have enough money to purchase Square20!
+Player 3 (a.k.a. ferhat) has 131$ right now.
+
+----------------------- Iteration 14 -----------------------
+
+Player 1 (Cat) is on Square30 square right now.
+Player 1 (a.k.a. mert) has 43$.
+Player 1 (a.k.a. mert) is rolling dice...
+Player 1 dice values: 2-2 Sum of dice: 4
+
+Player 1 is moving to CommunityChest
+Player 1 (Cat) is on CommunityChest sqaure at 12:02:42
+Player 1 has 43$
+Player 1 rolled a double. mert has the turn again...
+
+----------------------- Iteration 14 -----------------------
+
+Player 1 (Cat) is on CommunityChest square right now.
+Player 1 (a.k.a. mert) has 43$.
+Player 1 (a.k.a. mert) is rolling dice...
+Player 1 dice values: 4-3 Sum of dice: 7
+
+Player 1 is moving to GoSquare
+Player 1 (Cat) is on GoSquare sqaure at 12:02:42
+Player 1 (a.k.a. mert) is on Go Square right now. 200$ paid to the player !
+Now Player 1 has 243$
+
+----------------------- Iteration 14 -----------------------
+
+Player 2 (Rubber Ducky) is on Square38 square right now.
+Player 2 (a.k.a. rümeysa) has 15$.
+Player 2 (a.k.a. rümeysa) is rolling dice...
+Player 2 dice values: 1-2 Sum of dice: 3
+
+Player 2 is moving to GoSquare
+Player 2 (Rubber Ducky) is on GoSquare sqaure at 12:02:42
+Player 2 (a.k.a. rümeysa) is on Go Square right now. 200$ paid to the player !
+Now Player 2 has 215$
+
+----------------------- Iteration 14 -----------------------
+
+Player 3 (Penguin) is on Square20 square right now.
+Player 3 (a.k.a. ferhat) has 131$.
+Player 3 (a.k.a. ferhat) is rolling dice...
+Player 3 dice values: 6-5 Sum of dice: 11
+
+Player 3 is moving to GoToJailSquare
+Player 3 (Penguin) is on GoToJailSquare sqaure at 12:02:42
+Oh no ! Player 3 must go to the jail square now !
+Player 3 (a.k.a. ferhat) is on Jail Square right now. 
+Player 3 has 131$
+
+----------------------- Iteration 15 -----------------------
+
+Player 1 (Cat) is on GoSquare square right now.
+Player 1 (a.k.a. mert) has 243$.
+Player 1 (a.k.a. mert) is rolling dice...
+Player 1 dice values: 5-1 Sum of dice: 6
+
+Player 1 is moving to Square7
+Player 1 (Cat) is on Square7 sqaure at 12:02:42
+Square7's price is 100$.
+Player 1 purchased Square7.
+Player 1 (a.k.a. mert) has 143$ right now.
+
+----------------------- Iteration 15 -----------------------
+
+Player 2 (Rubber Ducky) is on GoSquare square right now.
+Player 2 (a.k.a. rümeysa) has 215$.
+Player 2 (a.k.a. rümeysa) is rolling dice...
+Player 2 dice values: 5-2 Sum of dice: 7
+
+Player 2 is moving to Chance
+Player 2 (Rubber Ducky) is on Chance sqaure at 12:02:42
+Player 2 has 215$
+
+----------------------- Iteration 14 -----------------------
+
+Player 3 is on JailSquare right now.
+Player 3 has two decisions. S/he can pay 50$ to get out or can try rolling dice to double !
+Player 3 chose to pay for going out.
+Now Player 3 has 81$.
+
+----------------------- Iteration 15 -----------------------
+
+Player 3 (Penguin) is on JailSquare square right now.
+Player 3 (a.k.a. ferhat) has 81$.
+Player 3 (a.k.a. ferhat) is rolling dice...
+Player 3 dice values: 5-4 Sum of dice: 9
+
+Player 3 is moving to Square20
+Player 3 (Penguin) is on Square20 sqaure at 12:02:42
+Square20's price is 200$.
+Player 3 doesn't have enough money to purchase Square20!
+Player 3 (a.k.a. ferhat) has 81$ right now.
+
+----------------------- Iteration 16 -----------------------
+
+Player 1 (Cat) is on Square7 square right now.
+Player 1 (a.k.a. mert) has 143$.
+Player 1 (a.k.a. mert) is rolling dice...
+Player 1 dice values: 2-4 Sum of dice: 6
+
+Player 1 is moving to ElectricUtility
+Player 1 (Cat) is on ElectricUtility sqaure at 12:02:42
+ElectricUtility's price is 150$.
+Player 1 doesn't have enough money to purchase ElectricUtility!
+Player 1 (a.k.a. mert) has 143$ right now.
+
+----------------------- Iteration 16 -----------------------
+
+Player 2 (Rubber Ducky) is on Chance square right now.
+Player 2 (a.k.a. rümeysa) has 215$.
+Player 2 (a.k.a. rümeysa) is rolling dice...
+Player 2 dice values: 2-3 Sum of dice: 5
+
+Player 2 is moving to ElectricUtility
+Player 2 (Rubber Ducky) is on ElectricUtility sqaure at 12:02:42
+ElectricUtility's price is 150$.
+Player 2 decided not to purchase ElectricUtility!
+Player 2 (a.k.a. rümeysa) has 215$ right now.
+
+----------------------- Iteration 16 -----------------------
+
+Player 3 (Penguin) is on Square20 square right now.
+Player 3 (a.k.a. ferhat) has 81$.
+Player 3 (a.k.a. ferhat) is rolling dice...
+Player 3 dice values: 3-5 Sum of dice: 8
+
+Player 3 is moving to Square28
+Player 3 (Penguin) is on Square28 sqaure at 12:02:42
+Square28's price is 260$.
+Player 3 doesn't have enough money to purchase Square28!
+Player 3 (a.k.a. ferhat) has 81$ right now.
+
+----------------------- Iteration 17 -----------------------
+
+Player 1 (Cat) is on ElectricUtility square right now.
+Player 1 (a.k.a. mert) has 143$.
+Player 1 (a.k.a. mert) is rolling dice...
+Player 1 dice values: 1-1 Sum of dice: 2
+
+Player 1 is moving to Square15
+Player 1 (Cat) is on Square15 sqaure at 12:02:42
+Square15 owned by rümeysa. mert has to pay 12$.
+Player 1 has paid 12$ to Player 2.
+Player 1 has 131$.
+Player 1 rolled a double. mert has the turn again...
+
+----------------------- Iteration 17 -----------------------
+
+Player 1 (Cat) is on Square15 square right now.
+Player 1 (a.k.a. mert) has 131$.
+Player 1 (a.k.a. mert) is rolling dice...
+Player 1 dice values: 5-5 Sum of dice: 10
+
+Player 1 is moving to Square25
+Player 1 (Cat) is on Square25 sqaure at 12:02:42
+Square25's price is 240$.
+Player 1 decided not to purchase Square25!
+Player 1 (a.k.a. mert) has 131$ right now.
+Player 1 rolled a double. mert has the turn again...
+
+----------------------- Iteration 17 -----------------------
+
+Player 1 (Cat) is on Square25 square right now.
+Player 1 (a.k.a. mert) has 131$.
+Player 1 (a.k.a. mert) is rolling dice...
+Player 1 dice values: 5-2 Sum of dice: 7
+
+Player 1 is moving to Square32
+Player 1 (Cat) is on Square32 sqaure at 12:02:42
+Square32's price is 300$.
+Player 1 decided not to purchase Square32!
+Player 1 (a.k.a. mert) has 131$ right now.
+
+----------------------- Iteration 17 -----------------------
+
+Player 2 (Rubber Ducky) is on ElectricUtility square right now.
+Player 2 (a.k.a. rümeysa) has 227$.
+Player 2 (a.k.a. rümeysa) is rolling dice...
+Player 2 dice values: 6-4 Sum of dice: 10
+
+Player 2 is moving to Chance
+Player 2 (Rubber Ducky) is on Chance sqaure at 12:02:42
+Player 2 has 227$
+
+----------------------- Iteration 17 -----------------------
+
+Player 3 (Penguin) is on Square28 square right now.
+Player 3 (a.k.a. ferhat) has 81$.
+Player 3 (a.k.a. ferhat) is rolling dice...
+Player 3 dice values: 3-2 Sum of dice: 5
+
+Player 3 is moving to Square33
+Player 3 (Penguin) is on Square33 sqaure at 12:02:42
+Square33's price is 300$.
+Player 3 decided not to purchase Square33!
+Player 3 (a.k.a. ferhat) has 81$ right now.
+
+----------------------- Iteration 18 -----------------------
+
+Player 1 (Cat) is on Square32 square right now.
+Player 1 (a.k.a. mert) has 131$.
+Player 1 (a.k.a. mert) is rolling dice...
+Player 1 dice values: 1-4 Sum of dice: 5
+
+Player 1 is moving to Chance
+Player 1 (Cat) is on Chance sqaure at 12:02:42
+Player 1 has 131$
+
+----------------------- Iteration 18 -----------------------
+
+Player 2 (Rubber Ducky) is on Chance square right now.
+Player 2 (a.k.a. rümeysa) has 227$.
+Player 2 (a.k.a. rümeysa) is rolling dice...
+Player 2 dice values: 3-5 Sum of dice: 8
+
+Player 2 is moving to GoToJailSquare
+Player 2 (Rubber Ducky) is on GoToJailSquare sqaure at 12:02:42
+Oh no ! Player 2 must go to the jail square now !
+Player 2 (a.k.a. rümeysa) is on Jail Square right now. 
+Player 2 has 227$
+
+----------------------- Iteration 18 -----------------------
+
+Player 3 (Penguin) is on Square33 square right now.
+Player 3 (a.k.a. ferhat) has 81$.
+Player 3 (a.k.a. ferhat) is rolling dice...
+Player 3 dice values: 2-3 Sum of dice: 5
+
+Player 3 is moving to Square38
+Player 3 (Penguin) is on Square38 sqaure at 12:02:42
+Square38's price is 350$.
+Player 3 decided not to purchase Square38!
+Player 3 (a.k.a. ferhat) has 81$ right now.
+
+----------------------- Iteration 19 -----------------------
+
+Player 1 (Cat) is on Chance square right now.
+Player 1 (a.k.a. mert) has 131$.
+Player 1 (a.k.a. mert) is rolling dice...
+Player 1 dice values: 6-4 Sum of dice: 10
+
+Player 1 is moving to Square7
+Player 1 (Cat) is on Square7 sqaure at 12:02:42
+
+----------------------- Iteration 18 -----------------------
+
+Player 2 is on JailSquare right now.
+Player 2 has two decisions. S/he can pay 50$ to get out or can try rolling dice to double !
+Player 2 chose rolling dice for getting out !
+Player 2 is rolling dice...
+Player 2 (a.k.a. rümeysa) rolled 5-3. Total dice: 8
+Player 2 (a.k.a. rümeysa) failed rolling doubles :(
+
+----------------------- Iteration 19 -----------------------
+
+Player 3 (Penguin) is on Square38 square right now.
+Player 3 (a.k.a. ferhat) has 81$.
+Player 3 (a.k.a. ferhat) is rolling dice...
+Player 3 dice values: 5-6 Sum of dice: 11
+
+Player 3 is moving to Square9
+Player 3 (Penguin) is on Square9 sqaure at 12:02:42
+Square9 owned by rümeysa. ferhat has to pay 6$.
+Player 3 has paid 6$ to Player 2.
+Player 3 has 75$.
+
+----------------------- Iteration 20 -----------------------
+
+Player 1 (Cat) is on Square7 square right now.
+Player 1 (a.k.a. mert) has 131$.
+Player 1 (a.k.a. mert) is rolling dice...
+Player 1 dice values: 3-2 Sum of dice: 5
+
+Player 1 is moving to Square12
+Player 1 (Cat) is on Square12 sqaure at 12:02:42
+Square12's price is 140$.
+Player 1 doesn't have enough money to purchase Square12!
+Player 1 (a.k.a. mert) has 131$ right now.
+
+----------------------- Iteration 19 -----------------------
+
+Player 2 is on JailSquare right now.
+Player 2 has two decisions. S/he can pay 50$ to get out or can try rolling dice to double !
+Player 2 chose rolling dice for getting out !
+Player 2 is rolling dice...
+Player 2 (a.k.a. rümeysa) rolled 3-6. Total dice: 9
+Player 2 (a.k.a. rümeysa) failed rolling doubles :(
+
+----------------------- Iteration 20 -----------------------
+
+Player 3 (Penguin) is on Square9 square right now.
+Player 3 (a.k.a. ferhat) has 75$.
+Player 3 (a.k.a. ferhat) is rolling dice...
+Player 3 dice values: 3-4 Sum of dice: 7
+
+Player 3 is moving to RailRoad2
+Player 3 (Penguin) is on RailRoad2 sqaure at 12:02:42
+RailRoad2's price is 200$.
+Player 3 doesn't have enough money to purchase RailRoad2!
+Player 3 (a.k.a. ferhat) has 75$ right now.
+
+----------------------- Iteration 21 -----------------------
+
+Player 1 (Cat) is on Square12 square right now.
+Player 1 (a.k.a. mert) has 131$.
+Player 1 (a.k.a. mert) is rolling dice...
+Player 1 dice values: 5-5 Sum of dice: 10
+
+Player 1 is moving to Square22
+Player 1 (Cat) is on Square22 sqaure at 12:02:42
+Square22's price is 220$.
+Player 1 doesn't have enough money to purchase Square22!
+Player 1 (a.k.a. mert) has 131$ right now.
+Player 1 rolled a double. mert has the turn again...
+
+----------------------- Iteration 21 -----------------------
+
+Player 1 (Cat) is on Square22 square right now.
+Player 1 (a.k.a. mert) has 131$.
+Player 1 (a.k.a. mert) is rolling dice...
+Player 1 dice values: 2-3 Sum of dice: 5
+
+Player 1 is moving to Square27
+Player 1 (Cat) is on Square27 sqaure at 12:02:42
+Square27's price is 260$.
+Player 1 doesn't have enough money to purchase Square27!
+Player 1 (a.k.a. mert) has 131$ right now.
+This is Player 2's last turn in the jail...
+Player 2 must pay 50$ to get out!
+
+----------------------- Iteration 21 -----------------------
+
+Player 2 (Rubber Ducky) is on JailSquare square right now.
+Player 2 (a.k.a. rümeysa) has 183$.
+Player 2 (a.k.a. rümeysa) is rolling dice...
+Player 2 dice values: 1-4 Sum of dice: 5
+
+Player 2 is moving to RailRoad2
+Player 2 (Rubber Ducky) is on RailRoad2 sqaure at 12:02:42
+RailRoad2's price is 200$.
+Player 2 decided not to purchase RailRoad2!
+Player 2 (a.k.a. rümeysa) has 183$ right now.
+
+----------------------- Iteration 21 -----------------------
+
+Player 3 (Penguin) is on RailRoad2 square right now.
+Player 3 (a.k.a. ferhat) has 75$.
+Player 3 (a.k.a. ferhat) is rolling dice...
+Player 3 dice values: 2-3 Sum of dice: 5
+
+Player 3 is moving to FreeParkingSquare
+Player 3 (Penguin) is on FreeParkingSquare sqaure at 12:02:42
+Player 3 parked his/her piece until the next turn !!!
+Player 3 has 75$
+
+----------------------- Iteration 22 -----------------------
+
+Player 1 (Cat) is on Square27 square right now.
+Player 1 (a.k.a. mert) has 131$.
+Player 1 (a.k.a. mert) is rolling dice...
+Player 1 dice values: 6-1 Sum of dice: 7
+
+Player 1 is moving to CommunityChest
+Player 1 (Cat) is on CommunityChest sqaure at 12:02:42
+Player 1 has 131$
+
+----------------------- Iteration 22 -----------------------
+
+Player 2 (Rubber Ducky) is on RailRoad2 square right now.
+Player 2 (a.k.a. rümeysa) has 183$.
+Player 2 (a.k.a. rümeysa) is rolling dice...
+Player 2 dice values: 5-2 Sum of dice: 7
+
+Player 2 is moving to Chance
+Player 2 (Rubber Ducky) is on Chance sqaure at 12:02:42
+Player 2 has 183$
+
+----------------------- Iteration 22 -----------------------
+
+Player 3 (Penguin) is on FreeParkingSquare square right now.
+Player 3 (a.k.a. ferhat) has 75$.
+Player 3 (a.k.a. ferhat) is rolling dice...
+Player 3 dice values: 2-4 Sum of dice: 6
+
+Player 3 is moving to Square27
+Player 3 (Penguin) is on Square27 sqaure at 12:02:42
+Square27's price is 260$.
+Player 3 doesn't have enough money to purchase Square27!
+Player 3 (a.k.a. ferhat) has 75$ right now.
+
+----------------------- Iteration 23 -----------------------
+
+Player 1 (Cat) is on CommunityChest square right now.
+Player 1 (a.k.a. mert) has 131$.
+Player 1 (a.k.a. mert) is rolling dice...
+Player 1 dice values: 3-1 Sum of dice: 4
+
+Player 1 is moving to Square38
+Player 1 (Cat) is on Square38 sqaure at 12:02:42
+Square38's price is 350$.
+Player 1 decided not to purchase Square38!
+Player 1 (a.k.a. mert) has 131$ right now.
+
+----------------------- Iteration 23 -----------------------
+
+Player 2 (Rubber Ducky) is on Chance square right now.
+Player 2 (a.k.a. rümeysa) has 183$.
+Player 2 (a.k.a. rümeysa) is rolling dice...
+Player 2 dice values: 2-4 Sum of dice: 6
+
+Player 2 is moving to WaterUtility
+Player 2 (Rubber Ducky) is on WaterUtility sqaure at 12:02:42
+WaterUtility's price is 150$.
+Player 2 decided not to purchase WaterUtility!
+Player 2 (a.k.a. rümeysa) has 183$ right now.
+
+----------------------- Iteration 23 -----------------------
+
+Player 3 (Penguin) is on Square27 square right now.
+Player 3 (a.k.a. ferhat) has 75$.
+Player 3 (a.k.a. ferhat) is rolling dice...
+Player 3 dice values: 6-6 Sum of dice: 12
+
+Player 3 is moving to LuxuryTaxSquare
+Player 3 (Penguin) is on LuxuryTaxSquare sqaure at 12:02:42
+Player 3 must pay 75$ to the bank because of luxury tax !!
+Player 3 goes bankrupt !
+Player 3 removing from the game...
+Player3 (a.k.a. ferhat) is bankrupt. Game ends in 22 iterations...

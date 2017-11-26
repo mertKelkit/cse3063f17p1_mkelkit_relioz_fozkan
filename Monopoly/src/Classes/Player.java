@@ -1,7 +1,6 @@
 package Classes;
 
 
-import java.io.PrintWriter;
 import java.util.ArrayList;
 
 public class Player {
@@ -106,7 +105,7 @@ public class Player {
     }
 
     public void purchaseSquare(Die die, PurchasableSquare square) {
-        System.out.println(square + "'s price is " + square.getPrice() + ".");
+        System.out.println(square + "'s price is " + square.getPrice() + "$.");
         this.rollDie(die);
         if(die.getFaceValue() > 4 && this.getCash().getAmount() - square.getPrice() > 0) {
             ownedSquares.add(square);
@@ -115,8 +114,11 @@ public class Player {
             this.getCash().dropCash((long)square.getPrice());
             System.out.println("Player " + this.getTurn() + " purchased " + square + ".");
         }
+        else if(die.getFaceValue() <= 4){
+            System.out.println("Player " + this.getTurn() + " decided not to purchase " + square + "!");
+        }
         else {
-            System.out.println("Player " + this.getTurn() + " couldn't roll a die larger than 4 or has not enough money to buy " + square + "!");
+            System.out.println("Player " + this.getTurn() + " doesn't have enough money to purchase " + square + "!");
         }
         System.out.println("Player " + this.getTurn() + " (a.k.a. " + this + ") has " + this.getCash().getAmount() + "$ right now.");
     }
