@@ -1,8 +1,9 @@
 package Classes;
 
+import java.io.FileWriter;
+import java.io.PrintWriter;
 import java.text.SimpleDateFormat;
 import java.util.*;
-import java.util.concurrent.TimeUnit;
 
 
 //The class which includes everything about the game
@@ -29,240 +30,123 @@ public class MonopolyGame {
 
     //Setting up some instances
     public void startGame(int numOfIterations) {
-        int choice;
         Calendar cal = Calendar.getInstance();
         SimpleDateFormat sdf = new SimpleDateFormat("HH:mm:ss");
         //Getting simulation type
-        choice = getMenuChoice();
         rollDiceForTurn();
         //Run simulation with given parameters
-        runSimulation(cal, sdf, numOfIterations, choice);
-    }
-
-
-    //prints given messages with delay
-    public void printWithDelay(String str, long delay) {
-        System.out.println(str);
-        try {
-            TimeUnit.MILLISECONDS.sleep(delay);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+        runSimulation(cal, sdf, numOfIterations);
     }
 
     //for appearance
-    public void printBorder(int iteration, int delay) {
-        if(iteration != 0)
-            printWithDelay("\n----------------------- Iteration " + iteration + " -----------------------\n", delay);
-        else
-            printWithDelay("-----------------------------------------------------------", delay);
+    public void printBorder(int iteration) {
+        if(iteration != 0) {
+            System.out.println("\n----------------------- Iteration " + iteration + " -----------------------\n");
+        }
+        else {
+            System.out.println("-----------------------------------------------------------");
+        }
     }
 
-    public void runSimulation(Calendar cal, SimpleDateFormat sdf, int numOfIterations, int choice) {
+    public void runSimulation(Calendar cal, SimpleDateFormat sdf, int numOfIterations) {
         printPieceOwners();
         System.out.println("\nGame starts...");
-        //simulation types
         int ctr = 0;
-        switch(choice) {
-            //if simulation runs with delay
-            case 1: {
-                for(int i=0; i<numOfIterations; i++) {
-                    if(players.isEmpty())
-                        break;
-                    for(int j=0; j<players.size(); j++) {
-                        if(!players.get(j).isSuspended()) {
-                            printBorder(i + 1, 100);
-                            printWithDelay("Player " + players.get(j).getTurn() + " (" + players.get(j).getPiece().getShape() + ") is on " + players.get(j).getPiece().getSquare() + " square right now.", 100);
-                            printWithDelay("Player " + players.get(j).getTurn() + " (a.k.a. " + players.get(j) + ") has " + players.get(j).getCash() + ".", 50);
-                            printWithDelay("Player " + players.get(j).getTurn() + " (a.k.a. " + players.get(j) + ") is rolling dice...", 150);
-                            int total = players.get(j).rollDice(die1, die2);
-                            players.get(j).getPiece().moveTo(die1.getFaceValue() + die2.getFaceValue());
-                            printWithDelay("Player " + players.get(j).getTurn() + " dice values: " + die1.getFaceValue() + "-" + die2.getFaceValue() + " Sum of dice: " + total, 400);
-                            System.out.println();
-                            printWithDelay("Player " + players.get(j).getTurn() + " is moving to "
-                                    + players.get(j).getPiece().getSquare(), 50);
-                            printWithDelay("Player " + players.get(j).getTurn() + " (" + players.get(j).getPiece().getShape() + ") is on " +
-                                    players.get(j).getPiece().getSquare() + " sqaure at " + sdf.format(cal.getTime()), 500);
-                            int firstDieValue = die1.getFaceValue();
-                            players.get(j).getPiece().getSquare().action(players.get(j));
-                            if(players.get(j).isBankrupt()) {
-                                System.out.println("Player" + players.get(j).getTurn() + " (a.k.a. " + players.get(j) + ") is bankrupt. Game ends in " + i + " iterations...");
-                                System.exit(0);
+        for(int i=0; i<numOfIterations; i++) {
+            if(players.isEmpty())
+                break;
+            for(int j=0; j<players.size(); j++) {
+                if(!players.get(j).isSuspended()) {
+                    printBorder(i + 1);
+                    System.out.println("Player " + players.get(j).getTurn() + " (" + players.get(j).getPiece().getShape() + ") is on " + players.get(j).getPiece().getSquare() + " square right now.");
+                    System.out.println("Player " + players.get(j).getTurn() + " (a.k.a. " + players.get(j) + ") has " + players.get(j).getCash() + ".");
+                    System.out.println("Player " + players.get(j).getTurn() + " (a.k.a. " + players.get(j) + ") is rolling dice...");
+                    int total = players.get(j).rollDice(die1, die2);
+                    players.get(j).getPiece().moveTo(die1.getFaceValue() + die2.getFaceValue());
+                    System.out.println("Player " + players.get(j).getTurn() + " dice values: " + die1.getFaceValue() + "-" + die2.getFaceValue() + " Sum of dice: " + total);
+                    System.out.println();
+                    System.out.println("Player " + players.get(j).getTurn() + " is moving to "
+                            + players.get(j).getPiece().getSquare());
+                    System.out.println("Player " + players.get(j).getTurn() + " (" + players.get(j).getPiece().getShape() + ") is on " +
+                            players.get(j).getPiece().getSquare() + " sqaure at " + sdf.format(cal.getTime()));
+                    int firstDieValue = die1.getFaceValue();
+                    players.get(j).getPiece().getSquare().action(players.get(j));
+                    if(players.get(j).isBankrupt()) {
+                        System.out.println("Player" + players.get(j).getTurn() + " (a.k.a. " + players.get(j) + ") is bankrupt. Game ends in " + i + " iterations...");
+                        System.exit(0);
+                    }
+                    if (firstDieValue == die2.getFaceValue()) {
+                        players.get(j).incrementDoubleCounter();
+                        if (players.get(j).getDoubleCounter() == 3) {
+                            System.out.println("Player " + players.get(j).getTurn() + " rolled double three times in a row. " + players.get(j) + " is going to jail right now!");
+                            players.get(j).getPiece().moveTo(mainBoard.squares[10]);
+                            players.get(j).setSuspended(true);
+                            continue;
+                        }
+                        System.out.println("Player " + players.get(j).getTurn() + " rolled a double. " + players.get(j) + " has the turn again...");
+                        j--;
+                    }
+                    else
+                        players.get(j).resetDoubleCounter();
+                }
+                else {
+                    players.get(j).incrementSuspensionCounter();
+                    if(players.get(j).getSuspensionCounter() == 3) {
+                        System.out.println("This is Player " + players.get(j).getTurn() + "'s last turn in the jail...");
+                        System.out.println("Player " + players.get(j).getTurn() + " must pay 50$ to get out!");
+                        players.get(j).getCash().dropCash(50l);
+                        if(players.get(j).getCash().getAmount() <= 0) {
+                            System.out.println("Player " + players.get(j).getTurn() + " goes bankrupcy !");
+                            players.remove(j);
+                            for(int l=0; l<players.size(); l++) {
+                                players.get(l).setTurn(players.indexOf(players.get(l))+1);
                             }
-                            if(firstDieValue == die2.getFaceValue()) {
-                                players.get(j).incrementDoubleCounter();
-                                if(players.get(j).getDoubleCounter() == 3) {
-                                    printWithDelay("Player " + players.get(j).getTurn() + " rolled double three times in a row. " + players.get(j) + " is going to jail right now!", 75);
-                                    players.get(j).getPiece().moveTo(mainBoard.squares[10]);
-                                    players.get(j).setSuspended(true);
-                                    break;
-                                }
-                                printWithDelay("Player " + players.get(j).getTurn() + " rolled a double. " + players.get(j) + " has the turn again...", 75);
-                                j--;
-                            }
-                            else
-                                players.get(j).resetDoubleCounter();
+                            j--;
+                            continue;
+                        }
+                        players.get(j).resetSuspensionCounter();
+                        players.get(j).setSuspended(false);
+                        j--;
+                        continue;
+                    }
+                    else {
+                        printBorder(i);
+                        System.out.println("Player " + players.get(j).getTurn() + " is on " + players.get(j).getPiece().getSquare() + " right now.");
+                        System.out.println("Player " + players.get(j).getTurn() + " has two decisions. S/he can pay 50$ to get out or can try rolling dice to double !");
+                        if(randomDecision(players.get(j))) {
+                            System.out.println("Now Player " + players.get(j).getTurn() + " has " + players.get(j).getCash() + ".");
+                            players.get(j).setSuspended(false);
+                            players.get(j).resetSuspensionCounter();
+                            j--;
+                            continue;
                         }
                         else {
-                            players.get(j).incrementSuspensionCounter();
-                            if(players.get(j).getSuspensionCounter() == 3) {
-                                printBorder(i, 0);
-                                printWithDelay("This is Player " + players.get(j).getTurn() + "'s last turn in the jail...", 25);
-                                printWithDelay("Player " + players.get(j).getTurn() + " must pay 50$ to get out!", 25);
-                                players.get(j).getCash().dropCash(50l);
-                                if(players.get(j).getCash().getAmount() <= 0) {
-                                    System.out.println("Player " + players.get(j).getTurn() + " goes bankrupcy !");
-                                    players.remove(j);
-                                    for(int l=0; l<players.size(); l++) {
-                                        players.get(l).setTurn(players.indexOf(players.get(l))+1);
-                                    }
-                                    j--;
-                                }
-                                players.get(j).resetSuspensionCounter();
+                            System.out.println("Player " + players.get(j).getTurn() + " chose rolling dice for getting out !");
+                            System.out.println("Player " + players.get(j).getTurn() + " is rolling dice...");
+                            int total = players.get(j).rollDice(die1, die2);
+                            System.out.println("Player " + players.get(j).getTurn() + " (a.k.a. " + players.get(j) + ") rolled " +
+                                die1.getFaceValue() + "-" + die2.getFaceValue() + ". Total dice: " + total);
+                            if(die1.getFaceValue() == die2.getFaceValue()) {
                                 players.get(j).setSuspended(false);
-                                j--;
+                                players.get(j).resetSuspensionCounter();
+                                players.get(j).getPiece().moveTo(total);
+                                System.out.println("Player " + players.get(j).getTurn() + " (" + players.get(j).getPiece().getShape() + ") is on" +
+                                        players.get(j).getPiece().getSquare() + " right now. " );
+                                System.out.println("Player " + players.get(j).getTurn() + " has " + players.get(j).getCash() + ".");
                                 continue;
                             }
                             else {
-                                printBorder(i, 0);
-                                printWithDelay("Player " + players.get(j).getTurn() + " is on " + players.get(j).getPiece().getSquare() + " right now.", 25);
-                                printWithDelay("Player " + players.get(j).getTurn() + " has two decisions. S/he can pay 50$ to get out or can try rolling dice to double !", 25);
-                                if(randomDecision(players.get(j))) {
-                                    printWithDelay("Now Player " + players.get(j).getTurn() + " has " + players.get(j).getCash() + ".", 30);
-                                    players.get(j).setSuspended(false);
-                                    players.get(j).resetSuspensionCounter();
-                                    j--;
-                                    continue;
-                                }
-                                else {
-                                    printWithDelay("Player " + players.get(j).getTurn() + " chose rolling dice for getting out !", 20);
-                                    printWithDelay("Player " + players.get(j).getTurn() + " is rolling dice...", 50);
-                                    int total = players.get(j).rollDice(die1, die2);
-                                    printWithDelay("Player " + players.get(j).getTurn() + " (a.k.a. " + players.get(j) + ") rolled " +
-                                            die1.getFaceValue() + "-" + die2.getFaceValue() + ". Total dice: " + total, 40);
-                                    if(die1.getFaceValue() == die2.getFaceValue()) {
-                                        players.get(j).setSuspended(false);
-                                        players.get(j).resetSuspensionCounter();
-                                        players.get(j).getPiece().moveTo(total);
-                                        printWithDelay("Player " + players.get(j).getTurn() + " (" + players.get(j).getPiece().getShape() + ") is on" +
-                                                players.get(j).getPiece().getSquare() + " right now. ", 30);
-                                        printWithDelay("Player " + players.get(j).getTurn() + " has " + players.get(j).getCash() + ".", 30);
-                                        continue;
-                                    }
-                                    else {
-                                        printWithDelay("Player " + players.get(j).getTurn() + " (a.k.a. " + players.get(j) + ") failed rolling doubles :(", 50);
-                                        continue;
-                                    }
-                                }
-                            }
-                        }
-                    }
-                    ctr++;
-                }
-                System.out.println();
-                printBorder(0, 100);
-                break;
-            }
-            //if simulation ends instantly
-            case 2: {
-                for(int i=0; i<numOfIterations; i++) {
-                    if(players.isEmpty())
-                        break;
-                    for(int j=0; j<players.size(); j++) {
-                        if(!players.get(j).isSuspended()) {
-                            printBorder(i + 1, 0);
-                            System.out.println("Player " + players.get(j).getTurn() + " (" + players.get(j).getPiece().getShape() + ") is on " + players.get(j).getPiece().getSquare() + " square right now.");
-                            System.out.println("Player " + players.get(j).getTurn() + " (a.k.a. " + players.get(j) + ") has " + players.get(j).getCash() + ".");
-                            System.out.println("Player " + players.get(j).getTurn() + " (a.k.a. " + players.get(j) + ") is rolling dice...");
-                            int total = players.get(j).rollDice(die1, die2);
-                            players.get(j).getPiece().moveTo(die1.getFaceValue() + die2.getFaceValue());
-                            System.out.println("Player " + players.get(j).getTurn() + " dice values: " + die1.getFaceValue() + "-" + die2.getFaceValue() + " Sum of dice: " + total);
-                            System.out.println();
-                            System.out.println("Player " + players.get(j).getTurn() + " is moving to "
-                                    + players.get(j).getPiece().getSquare());
-                            System.out.println("Player " + players.get(j).getTurn() + " (" + players.get(j).getPiece().getShape() + ") is on " +
-                                    players.get(j).getPiece().getSquare() + " sqaure at " + sdf.format(cal.getTime()));
-                            int firstDieValue = die1.getFaceValue();
-                            players.get(j).getPiece().getSquare().action(players.get(j));
-                            if(players.get(j).isBankrupt()) {
-                                System.out.println("Player" + players.get(j).getTurn() + " (a.k.a. " + players.get(j) + ") is bankrupt. Game ends in " + i + " iterations...");
-                                System.exit(0);
-                            }
-                            if (firstDieValue == die2.getFaceValue()) {
-                                players.get(j).incrementDoubleCounter();
-                                if (players.get(j).getDoubleCounter() == 3) {
-                                    printWithDelay("Player " + players.get(j).getTurn() + " rolled double three times in a row. " + players.get(j) + " is going to jail right now!", 75);
-                                    players.get(j).getPiece().moveTo(mainBoard.squares[10]);
-                                    players.get(j).setSuspended(true);
-                                    continue;
-                                }
-                                printWithDelay("Player " + players.get(j).getTurn() + " rolled a double. " + players.get(j) + " has the turn again...", 75);
-                                j--;
-                            }
-                            else
-                                players.get(j).resetDoubleCounter();
-                        }
-                        else {
-                            players.get(j).incrementSuspensionCounter();
-                            if(players.get(j).getSuspensionCounter() == 3) {
-                                System.out.println("This is Player " + players.get(j).getTurn() + "'s last turn in the jail...");
-                                System.out.println("Player " + players.get(j).getTurn() + " must pay 50$ to get out!");
-                                players.get(j).getCash().dropCash(50l);
-                                if(players.get(j).getCash().getAmount() <= 0) {
-                                    System.out.println("Player " + players.get(j).getTurn() + " goes bankrupcy !");
-                                    players.remove(j);
-                                    for(int l=0; l<players.size(); l++) {
-                                        players.get(l).setTurn(players.indexOf(players.get(l))+1);
-                                    }
-                                    j--;
-                                    continue;
-                                }
-                                players.get(j).resetSuspensionCounter();
-                                players.get(j).setSuspended(false);
-                                j--;
+                                System.out.println("Player " + players.get(j).getTurn() + " (a.k.a. " + players.get(j) + ") failed rolling doubles :(");
                                 continue;
                             }
-                            else {
-                                printBorder(i, 0);
-                                System.out.println("Player " + players.get(j).getTurn() + " is on " + players.get(j).getPiece().getSquare() + " right now.");
-                                System.out.println("Player " + players.get(j).getTurn() + " has two decisions. S/he can pay 50$ to get out or can try rolling dice to double !");
-                                if(randomDecision(players.get(j))) {
-                                    System.out.println("Now Player " + players.get(j).getTurn() + " has " + players.get(j).getCash() + ".");
-                                    players.get(j).setSuspended(false);
-                                    players.get(j).resetSuspensionCounter();
-                                    j--;
-                                    continue;
-                                }
-                                else {
-                                    System.out.println("Player " + players.get(j).getTurn() + " chose rolling dice for getting out !");
-                                    System.out.println("Player " + players.get(j).getTurn() + " is rolling dice...");
-                                    int total = players.get(j).rollDice(die1, die2);
-                                    System.out.println("Player " + players.get(j).getTurn() + " (a.k.a. " + players.get(j) + ") rolled " +
-                                        die1.getFaceValue() + "-" + die2.getFaceValue() + ". Total dice: " + total);
-                                    if(die1.getFaceValue() == die2.getFaceValue()) {
-                                        players.get(j).setSuspended(false);
-                                        players.get(j).resetSuspensionCounter();
-                                        players.get(j).getPiece().moveTo(total);
-                                        System.out.println("Player " + players.get(j).getTurn() + " (" + players.get(j).getPiece().getShape() + ") is on" +
-                                                players.get(j).getPiece().getSquare() + " right now. " );
-                                        System.out.println("Player " + players.get(j).getTurn() + " has " + players.get(j).getCash() + ".");
-                                        continue;
-                                    }
-                                    else {
-                                        System.out.println("Player " + players.get(j).getTurn() + " (a.k.a. " + players.get(j) + ") failed rolling doubles :(");
-                                        continue;
-                                    }
-                                }
-                            }
                         }
                     }
-                    ctr++;
                 }
-                System.out.println();
-                printBorder(0, 0);
-                break;
             }
+            ctr++;
         }
+        System.out.println();
+        printBorder(0);
         //end message
         System.out.printf("\n%d iterations completed.\nGame ends...\n", ctr);
     }
@@ -270,27 +154,12 @@ public class MonopolyGame {
 
     //print pieces and their ownner players
     public void printPieceOwners() {
-        printBorder(0, 100);
-        for(int i=0; i<players.size(); i++)
+        printBorder(0);
+        for(int i=0; i<players.size(); i++) {
             System.out.println("Player " + players.get(i).getTurn() + " (a.k.a. " + players.get(i) + ") picks "
                     + players.get(i).getPiece().getShape() + "!");
-        printBorder(0, 100);
-    }
-
-
-    //get a choice from menu and return it
-    private int getMenuChoice() {
-        Scanner sc = new Scanner(System.in);
-        int choice;
-        System.out.println("1. Continue with delay.");
-        System.out.println("2. End instantly. Quick result.");
-        System.out.print("Please choose simulation type: ");
-        choice = sc.nextInt();
-        while(choice < 1 || choice > 2) {
-            System.out.print("Please enter a choice between 1 and 2: ");
-            choice = sc.nextInt();
         }
-        return choice;
+        printBorder(0);
     }
 
     public void rollDiceForTurn() {

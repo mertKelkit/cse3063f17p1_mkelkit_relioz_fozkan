@@ -86,10 +86,4 @@ public class Board {
     public static Square getSquare(int index) {
         return squares[index%SIZE];
     }
-
-    public void print() {
-        for(int i=0; i<40; i++) {
-            System.out.println(squares[i]);
-        }
-    }
 }

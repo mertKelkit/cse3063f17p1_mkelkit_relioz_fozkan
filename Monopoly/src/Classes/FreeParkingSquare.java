@@ -1,5 +1,7 @@
 package Classes;
 
+import java.io.PrintWriter;
+
 public class FreeParkingSquare extends Square {
 
     public FreeParkingSquare(String name, int index) {

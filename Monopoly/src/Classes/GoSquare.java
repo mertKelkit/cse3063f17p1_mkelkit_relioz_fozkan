@@ -1,5 +1,7 @@
 package Classes;
 
+import java.io.PrintWriter;
+
 public class GoSquare extends Square {
 
     public GoSquare(String name, int index) {

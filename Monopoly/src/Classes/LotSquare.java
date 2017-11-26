@@ -1,6 +1,8 @@
 package Classes;
 
 
+import java.io.PrintWriter;
+
 public class LotSquare extends PurchasableSquare {
 
     public LotSquare(String name, int index) {

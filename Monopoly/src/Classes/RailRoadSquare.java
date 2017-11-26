@@ -1,6 +1,8 @@
 package Classes;
 
 
+import java.io.PrintWriter;
+
 public class RailRoadSquare extends PurchasableSquare {
 
     public RailRoadSquare(String name, int index) {

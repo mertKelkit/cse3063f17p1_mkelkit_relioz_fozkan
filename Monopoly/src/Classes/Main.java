@@ -1,16 +1,27 @@
 package Classes;
 
-import java.io.BufferedReader;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.IOException;
+import java.io.*;
 import java.util.ArrayList;
 import java.util.Random;
 import java.util.Scanner;
 
 //Basic test class in order to run game
 public class Main {
+
+    static FileOutputStream fout = null;
+    static MultiOutputStream multiOut = null;
+    static PrintStream stdout = null;
+
     public static void main(String[] args) {
+        try {
+            fout = new FileOutputStream("Monopoly/output.txt");
+            multiOut = new MultiOutputStream(System.out, fout);
+            stdout = new PrintStream(multiOut);
+            System.setOut(stdout);
+        }
+        catch (FileNotFoundException ex) {
+            ex.printStackTrace();
+        }
         int numOfPlayers = getNumberOfPlayers();
         String[] nameOfPlayers = getPlayerNames(numOfPlayers);
         String[] shapeNames = getShapeNames();
@@ -19,8 +30,6 @@ public class Main {
         int numOfIterations = getNumOfIterations();
         MonopolyGame game = new MonopolyGame(players);
         game.startGame(numOfIterations);
-        /*Board b = new Board();
-        b.print();*/
 
     }
 
@@ -28,10 +37,12 @@ public class Main {
         Scanner sc = new Scanner(System.in);
         System.out.print("Number of players must be between 2 and 8. Enter number of players: ");
         int numOfPlayers = sc.nextInt();
+        System.out.println(numOfPlayers);
         //controlling input, at least 2 - at most 8 players can play the game
         while(numOfPlayers < 2 || numOfPlayers > 8) {
             System.out.print("Please enter a number between 2 and 8: ");
             numOfPlayers = sc.nextInt();
+            System.out.println(numOfPlayers);
         }
         return numOfPlayers;
     }
@@ -44,6 +55,7 @@ public class Main {
         for(int i=0; i<numOfPlayers; i++) {
             System.out.print((i+1) + "- Enter a name for player: ");
             temp = sc.nextLine();
+            System.out.println(temp);
             //Checking current name with other names. If the name is already taken, program prints a warning message
             if(check(playerNames, temp))
                 playerNames[i] = temp;
@@ -111,10 +123,12 @@ public class Main {
         System.out.print("Enter the number of iterations: ");
         //Getting number of iterations
         numOfIterations = sc.nextInt();
+        System.out.println(numOfIterations);
         //Control iteration number. Cannot be less or equal than 0.
         while(numOfIterations <= 0) {
             System.out.print("Please enter a bigger iteration number than 0: ");
             numOfIterations = sc.nextInt();
+            System.out.println(numOfIterations);
         }
         return numOfIterations;
     }
@@ -123,9 +137,11 @@ public class Main {
         Scanner sc = new Scanner(System.in);
         System.out.print("Please enter initial cash for players: ");
         int initialCash = sc.nextInt();
+        System.out.println(initialCash);
         while(initialCash <= 0) {
             System.out.print("Please enter an amount larger than 0: ");
             initialCash = sc.nextInt();
+            System.out.println(initialCash);
         }
         return initialCash;
     }

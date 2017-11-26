@@ -1,6 +1,7 @@
 package Classes;
 
 
+import java.io.PrintWriter;
 import java.util.ArrayList;
 
 public class Player {
@@ -105,6 +106,7 @@ public class Player {
     }
 
     public void purchaseSquare(Die die, PurchasableSquare square) {
+        System.out.println(square + "'s price is " + square.getPrice() + ".");
         this.rollDie(die);
         if(die.getFaceValue() > 4 && this.getCash().getAmount() - square.getPrice() > 0) {
             ownedSquares.add(square);

@@ -1,6 +1,8 @@
 package Classes;
 
 
+import java.io.PrintWriter;
+
 public class GoToJailSquare extends Square {
 
     public GoToJailSquare(String name, int index) {

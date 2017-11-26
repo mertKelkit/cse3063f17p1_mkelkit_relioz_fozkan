@@ -1,5 +1,7 @@
 package Classes;
 
+import java.io.PrintWriter;
+
 public abstract class Square {
 
     //name of the square

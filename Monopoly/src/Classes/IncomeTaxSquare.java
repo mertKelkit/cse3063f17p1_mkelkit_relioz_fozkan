@@ -1,6 +1,8 @@
 package Classes;
 
 
+import java.io.PrintWriter;
+
 public class IncomeTaxSquare extends Square {
 
     public IncomeTaxSquare(String name, int index) {
