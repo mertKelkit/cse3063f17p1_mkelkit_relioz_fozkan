@@ -13,7 +13,7 @@ public class DieTest {
     public void setUp() throws Exception {
         die1 = new Die();
         die2 = new Die();
-        p = new Player(null, 0, null, null);
+        p = new Player("Rümeysa", 1, new Piece(),new Cash(10));
     }
 
     @After
