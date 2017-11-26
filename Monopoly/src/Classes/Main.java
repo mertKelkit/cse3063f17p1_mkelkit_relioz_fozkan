@@ -37,12 +37,12 @@ public class Main {
         Scanner sc = new Scanner(System.in);
         System.out.print("Number of players must be between 2 and 8. Enter number of players: ");
         int numOfPlayers = sc.nextInt();
-        System.out.println("Observer entered " + numOfPlayers);
+        System.out.println("Observer entered \"" + numOfPlayers + "\"");
         //controlling input, at least 2 - at most 8 players can play the game
         while(numOfPlayers < 2 || numOfPlayers > 8) {
             System.out.print("Please enter a number between 2 and 8: ");
             numOfPlayers = sc.nextInt();
-            System.out.println("Observer entered " + numOfPlayers);
+            System.out.println("Observer entered \"" + numOfPlayers + "\"");
         }
         return numOfPlayers;
     }
@@ -55,7 +55,7 @@ public class Main {
         for(int i=0; i<numOfPlayers; i++) {
             System.out.print((i+1) + "- Enter a name for player: ");
             temp = sc.nextLine();
-            System.out.println("Observer entered " + temp);
+            System.out.println("Observer entered \"" + temp + "\"");
             //Checking current name with other names. If the name is already taken, program prints a warning message
             if(check(playerNames, temp))
                 playerNames[i] = temp;
@@ -123,12 +123,12 @@ public class Main {
         System.out.print("Enter the number of iterations: ");
         //Getting number of iterations
         numOfIterations = sc.nextInt();
-        System.out.println("Observer entered " + numOfIterations);
+        System.out.println("Observer entered \"" + numOfIterations + "\"");
         //Control iteration number. Cannot be less or equal than 0.
         while(numOfIterations <= 0) {
             System.out.print("Please enter a bigger iteration number than 0: ");
             numOfIterations = sc.nextInt();
-            System.out.println("Observer entered " + numOfIterations);
+            System.out.println("Observer entered \"" + numOfIterations + "\"");
         }
         return numOfIterations;
     }
@@ -137,11 +137,11 @@ public class Main {
         Scanner sc = new Scanner(System.in);
         System.out.print("Please enter initial cash for players: ");
         int initialCash = sc.nextInt();
-        System.out.println("Observer entered " + initialCash);
+        System.out.println("Observer entered \"" + initialCash + "$\"");
         while(initialCash <= 0) {
             System.out.print("Please enter an amount larger than 0: ");
             initialCash = sc.nextInt();
-            System.out.println("Observer entered " + initialCash);
+            System.out.println("Observer entered \"" + initialCash + "$\"");
         }
         return initialCash;
     }
