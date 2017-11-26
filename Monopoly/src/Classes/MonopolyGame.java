@@ -38,7 +38,7 @@ public class MonopolyGame {
     }
 
     //for appearance
-    public void printBorder(int iteration) {
+    private void printBorder(int iteration) {
         if(iteration != 0) {
             System.out.println("\n----------------------- Iteration " + iteration + " -----------------------\n");
         }
@@ -47,14 +47,16 @@ public class MonopolyGame {
         }
     }
 
-    public void runSimulation(Calendar cal, SimpleDateFormat sdf) {
+    private void runSimulation(Calendar cal, SimpleDateFormat sdf) {
         printPieceOwners();
         System.out.println("\nGame starts...");
         int ctr = 0;
         for(int i=0; ; i++) {
             for(int j=0; j<players.size(); j++) {
                 printBorder(i + 1);
+                //if current player is not in the jail
                 if(!players.get(j).isSuspended()) {
+                    //print status
                     System.out.println("Player " + players.get(j).getTurn() + " (" + players.get(j).getPiece().getShape() + ") is on " + players.get(j).getPiece().getSquare() + " square right now.");
                     System.out.println("Player " + players.get(j).getTurn() + " (a.k.a. " + players.get(j) + ") has " + players.get(j).getCash() + ".");
                     System.out.println("Player " + players.get(j).getTurn() + " (a.k.a. " + players.get(j) + ") is rolling dice...");
@@ -66,27 +68,37 @@ public class MonopolyGame {
                             + players.get(j).getPiece().getSquare());
                     System.out.println("Player " + players.get(j).getTurn() + " (" + players.get(j).getPiece().getShape() + ") is on " +
                             players.get(j).getPiece().getSquare() + " sqaure at " + sdf.format(cal.getTime()));
+                    //store the die value because this die will be rolled again for paying rents of utility and railroad squares
                     int firstDieValue = die1.getFaceValue();
+                    //call the polymorphic action method of square class
                     players.get(j).getPiece().getSquare().action(players.get(j));
+                    //if player has money
                     if(players.get(j).isBankrupt()) {
+                        //if a player has no money, empty its owned squares
                         for(int a=0; a<players.get(j).getOwnedSquares().size(); a++) {
                             players.get(j).getOwnedSquares().get(a).setHasOwner(false);
                             players.get(j).getOwnedSquares().get(a).setOwner(null);
                         }
+                        //remove the player from the game
                         players.remove(j);
+                        //if only one player left, game ends
                         if(players.size() == 1)
                             break;
+                        //shift the player turns
                         for(int l=0; l<players.size(); l++) {
                             players.get(l).setTurn(players.indexOf(players.get(l))+1);
                         }
                         j--;
                         continue;
                     }
+                    //if player rolled a double
                     if (firstDieValue == die2.getFaceValue()) {
                         players.get(j).incrementDoubleCounter();
+                        //if player rolled 3 times in a row double, it goes to the jail
                         if (players.get(j).getDoubleCounter() == 3) {
                             System.out.println("Player " + players.get(j).getTurn() + " rolled double three times in a row. " + players.get(j) + " is going to jail right now!");
                             players.get(j).getPiece().moveTo(mainBoard.squares[10]);
+                            //suspend player from the game
                             players.get(j).setSuspended(true);
                             continue;
                         }
@@ -97,12 +109,15 @@ public class MonopolyGame {
                     else
                         players.get(j).resetDoubleCounter();
                 }
+                //if player is in the jail
                 else {
                     players.get(j).incrementSuspensionCounter();
                     if(players.get(j).getSuspensionCounter() == 3) {
+                        //if it's players last turn in the jail, it must pay 50$
                         System.out.println("This is Player " + players.get(j).getTurn() + "'s last turn in the jail...");
                         System.out.println("Player " + players.get(j).getTurn() + " must pay 50$ to get out!");
                         players.get(j).getCash().dropCash(50l);
+                        //if doesn't have enough money, player is removed from the game
                         if(players.get(j).getCash().getAmount() <= 0) {
                             System.out.println("Player " + players.get(j).getTurn() + " (a.k.a. " + players.get(j) + ") doesn't have enough money to pay it :(");
                             System.out.println("Player " + players.get(j).getTurn() + " goes bankruptcy !");
@@ -111,23 +126,28 @@ public class MonopolyGame {
                                 players.get(j).getOwnedSquares().get(a).setOwner(null);
                             }
                             players.remove(j);
+                            //if one player left, game ends
                             if(players.size() == 1) {
                                 break;
                             }
+                            //shift turns
                             for(int l=0; l<players.size(); l++) {
                                 players.get(l).setTurn(players.indexOf(players.get(l))+1);
                             }
                             j--;
                             continue;
                         }
+                        //remove suspension
                         players.get(j).resetSuspensionCounter();
                         players.get(j).setSuspended(false);
                         j--;
                         continue;
                     }
+                    //player's jail decision case
                     else {
                         System.out.println("Player " + players.get(j).getTurn() + " is on " + players.get(j).getPiece().getSquare() + " right now.");
                         System.out.println("Player " + players.get(j).getTurn() + " has two decisions. S/he can pay 50$ to get out or can try rolling dice to double !");
+                        //if player chooses to pay 50$
                         if(randomDecision(players.get(j))) {
                             System.out.println("Now Player " + players.get(j).getTurn() + " has " + players.get(j).getCash() + ".");
                             players.get(j).setSuspended(false);
@@ -135,12 +155,14 @@ public class MonopolyGame {
                             j--;
                             continue;
                         }
+                        //chooses to roll doubles
                         else {
                             System.out.println("Player " + players.get(j).getTurn() + " chose rolling dice for getting out !");
                             System.out.println("Player " + players.get(j).getTurn() + " is rolling dice...");
                             int total = players.get(j).rollDice(die1, die2);
                             System.out.println("Player " + players.get(j).getTurn() + " (a.k.a. " + players.get(j) + ") rolled " +
                                 die1.getFaceValue() + "-" + die2.getFaceValue() + ". Total dice: " + total);
+                            //if can roll double, player gets out from the jail and continues the game
                             if(die1.getFaceValue() == die2.getFaceValue()) {
                                 players.get(j).setSuspended(false);
                                 players.get(j).resetSuspensionCounter();
@@ -159,6 +181,7 @@ public class MonopolyGame {
                 }
             }
             ctr++;
+            //if one player left, game ends
             if(players.size() == 1)
                 break;
         }
@@ -172,7 +195,7 @@ public class MonopolyGame {
 
 
     //print pieces and their ownner players
-    public void printPieceOwners() {
+    private void printPieceOwners() {
         printBorder(0);
         for(int i=0; i<players.size(); i++) {
             System.out.println("Player " + players.get(i).getTurn() + " (a.k.a. " + players.get(i) + ") picks "
@@ -181,7 +204,7 @@ public class MonopolyGame {
         printBorder(0);
     }
 
-    public void rollDiceForTurn() {
+    private void rollDiceForTurn() {
         ArrayList<Integer> diceValues = new ArrayList<>();
         System.out.println("\nPlayers are rolling dice for turns...\n");
         for(int i=0; i<players.size(); i++) {
@@ -216,7 +239,7 @@ public class MonopolyGame {
         }
     }
 
-    public void sort(ArrayList<Integer> diceValues) {
+    private void sort(ArrayList<Integer> diceValues) {
         for(int i=0; i<players.size()-1; i++) {
             for(int j=i+1; j<players.size(); j++) {
                 if(diceValues.get(j) > diceValues.get(i)) {
@@ -227,7 +250,7 @@ public class MonopolyGame {
         }
     }
 
-    public boolean randomDecision(Player p) {
+    private boolean randomDecision(Player p) {
         Random rand = new Random();
         int dec = rand.nextInt(100);
         if((p.getSuspensionCounter() < 2 && dec <= 40 && p.getCash().getAmount() >= 51) || (p.getSuspensionCounter() >= 2 && dec <= 20 && p.getCash().getAmount() >= 51)) {

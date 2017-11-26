@@ -108,22 +108,29 @@ public class Player {
     public void purchaseSquare(Die die, PurchasableSquare square) {
         Random rand = new Random();
         boolean isPurchasing = rand.nextBoolean();
+        //if player wants to buy square
         if(isPurchasing) {
             System.out.println(square + "'s price is " + square.getPrice() + "$.");
+            //roll die for purchasing square
             this.rollDie(die);
+            //if it can buy the square
             if(die.getFaceValue() > 4 && this.getCash().getAmount() - square.getPrice() > 0) {
+                //owner of this square is this player
                 ownedSquares.add(square);
                 square.setHasOwner(true);
                 square.setOwner(this);
                 this.getCash().dropCash((long)square.getPrice());
                 System.out.println("Player " + this.getTurn() + " purchased " + square + ".");
             }
+            //if no money, print message
             else if(this.getCash().getAmount() - square.getPrice() <= 0){
                 System.out.println("Player " + this.getTurn() + " doesn't have enough money to purchase " + square + "!");
             }
+            //information message
             else {
                 System.out.println("Player " + this.getTurn() + " couldn't roll a die greater than 4!");
             }
+            //print cash
             System.out.println("Player " + this.getTurn() + " (a.k.a. " + this + ") has " + this.getCash().getAmount() + "$ right now.");
         }
         else {

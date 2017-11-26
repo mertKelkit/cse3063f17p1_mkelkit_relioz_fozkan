@@ -12,8 +12,9 @@ public class Board {
     public static final int SIZE = 40;
     public static final Square[] squares = getSquaresFromCsvFile();
 
+
     //read square names from a text file
-    public static Square[] getSquaresFromCsvFile() {
+    private static Square[] getSquaresFromCsvFile() {
         FileReader fileReader;
         BufferedReader bufferedReader;
         Square[] squares = new Square[SIZE];

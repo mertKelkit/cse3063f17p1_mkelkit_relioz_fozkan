@@ -32,7 +32,7 @@ public class Main {
 
     }
 
-    public static int getNumberOfPlayers() {
+    private static int getNumberOfPlayers() {
         Scanner sc = new Scanner(System.in);
         System.out.print("Number of players must be between 2 and 8. Enter number of players: ");
         int numOfPlayers = sc.nextInt();
@@ -46,7 +46,7 @@ public class Main {
         return numOfPlayers;
     }
 
-    public static String[] getPlayerNames(int numOfPlayers) {
+    private static String[] getPlayerNames(int numOfPlayers) {
         String[] playerNames = new String[numOfPlayers];
         Scanner sc = new Scanner(System.in);
         String temp;
@@ -66,14 +66,14 @@ public class Main {
         return playerNames;
     }
 
-    public static boolean check(String[] playerNames, String name) {
+    private static boolean check(String[] playerNames, String name) {
         //If a name is already taken, return false
         for(String str : playerNames)
             if(name.equals(str)) return false;
         return true;
     }
 
-    public static ArrayList<Player> initializePlayers(String[] playerNames, String[] shapeNames, int numOfPlayers, long initialCash) {
+    private static ArrayList<Player> initializePlayers(String[] playerNames, String[] shapeNames, int numOfPlayers, long initialCash) {
         ArrayList<Player> players = new ArrayList<>();
         for(int i=0; i<numOfPlayers; i++) {
             //Take a random piece shape for each player
@@ -84,7 +84,7 @@ public class Main {
         return players;
     }
 
-    public static PieceShape randomShape(String[] shapeNames) {
+    private static PieceShape randomShape(String[] shapeNames) {
         Random rand = new Random();
         int random;
         String temp;
@@ -99,7 +99,7 @@ public class Main {
     }
 
     //getting piece shapes from a text file
-    public static String[] getShapeNames() {
+    private static String[] getShapeNames() {
         String[] ret = new String[MonopolyGame.NUM_OF_PIECES];
         try {
             FileReader fileReader = new FileReader("Monopoly/src/Resources/piece_shapes.txt");
@@ -116,7 +116,7 @@ public class Main {
         return ret;
     }
 
-    public static int getInitialCash() {
+    private static int getInitialCash() {
         Scanner sc = new Scanner(System.in);
         System.out.print("Please enter initial cash for players: ");
         int initialCash = sc.nextInt();
