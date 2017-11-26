@@ -28,13 +28,13 @@ public class MonopolyGame {
     }
 
     //Setting up some instances
-    public void startGame(int numOfIterations) {
+    public void startGame() {
         Calendar cal = Calendar.getInstance();
         SimpleDateFormat sdf = new SimpleDateFormat("HH:mm:ss");
         //Getting simulation type
         rollDiceForTurn();
         //Run simulation with given parameters
-        runSimulation(cal, sdf, numOfIterations);
+        runSimulation(cal, sdf);
     }
 
     //for appearance
@@ -47,16 +47,14 @@ public class MonopolyGame {
         }
     }
 
-    public void runSimulation(Calendar cal, SimpleDateFormat sdf, int numOfIterations) {
+    public void runSimulation(Calendar cal, SimpleDateFormat sdf) {
         printPieceOwners();
         System.out.println("\nGame starts...");
         int ctr = 0;
-        for(int i=0; i<numOfIterations; i++) {
-            if(players.isEmpty())
-                break;
+        for(int i=0; ; i++) {
             for(int j=0; j<players.size(); j++) {
+                printBorder(i + 1);
                 if(!players.get(j).isSuspended()) {
-                    printBorder(i + 1);
                     System.out.println("Player " + players.get(j).getTurn() + " (" + players.get(j).getPiece().getShape() + ") is on " + players.get(j).getPiece().getSquare() + " square right now.");
                     System.out.println("Player " + players.get(j).getTurn() + " (a.k.a. " + players.get(j) + ") has " + players.get(j).getCash() + ".");
                     System.out.println("Player " + players.get(j).getTurn() + " (a.k.a. " + players.get(j) + ") is rolling dice...");
@@ -71,8 +69,18 @@ public class MonopolyGame {
                     int firstDieValue = die1.getFaceValue();
                     players.get(j).getPiece().getSquare().action(players.get(j));
                     if(players.get(j).isBankrupt()) {
-                        System.out.println("Player" + players.get(j).getTurn() + " (a.k.a. " + players.get(j) + ") is bankrupt. Game ends in " + i + " iterations...");
-                        System.exit(0);
+                        for(int a=0; a<players.get(j).getOwnedSquares().size(); a++) {
+                            players.get(j).getOwnedSquares().get(a).setHasOwner(false);
+                            players.get(j).getOwnedSquares().get(a).setOwner(null);
+                        }
+                        players.remove(j);
+                        if(players.size() == 1)
+                            break;
+                        for(int l=0; l<players.size(); l++) {
+                            players.get(l).setTurn(players.indexOf(players.get(l))+1);
+                        }
+                        j--;
+                        continue;
                     }
                     if (firstDieValue == die2.getFaceValue()) {
                         players.get(j).incrementDoubleCounter();
@@ -84,6 +92,7 @@ public class MonopolyGame {
                         }
                         System.out.println("Player " + players.get(j).getTurn() + " rolled a double. " + players.get(j) + " has the turn again...");
                         j--;
+                        continue;
                     }
                     else
                         players.get(j).resetDoubleCounter();
@@ -95,8 +104,16 @@ public class MonopolyGame {
                         System.out.println("Player " + players.get(j).getTurn() + " must pay 50$ to get out!");
                         players.get(j).getCash().dropCash(50l);
                         if(players.get(j).getCash().getAmount() <= 0) {
-                            System.out.println("Player " + players.get(j).getTurn() + " goes bankrupcy !");
+                            System.out.println("Player " + players.get(j).getTurn() + " (a.k.a. " + players.get(j) + ") doesn't have enough money to pay it :(");
+                            System.out.println("Player " + players.get(j).getTurn() + " goes bankruptcy !");
+                            for(int a=0; a<players.get(j).getOwnedSquares().size(); a++) {
+                                players.get(j).getOwnedSquares().get(a).setHasOwner(false);
+                                players.get(j).getOwnedSquares().get(a).setOwner(null);
+                            }
                             players.remove(j);
+                            if(players.size() == 1) {
+                                break;
+                            }
                             for(int l=0; l<players.size(); l++) {
                                 players.get(l).setTurn(players.indexOf(players.get(l))+1);
                             }
@@ -109,7 +126,6 @@ public class MonopolyGame {
                         continue;
                     }
                     else {
-                        printBorder(i);
                         System.out.println("Player " + players.get(j).getTurn() + " is on " + players.get(j).getPiece().getSquare() + " right now.");
                         System.out.println("Player " + players.get(j).getTurn() + " has two decisions. S/he can pay 50$ to get out or can try rolling dice to double !");
                         if(randomDecision(players.get(j))) {
@@ -143,11 +159,15 @@ public class MonopolyGame {
                 }
             }
             ctr++;
+            if(players.size() == 1)
+                break;
         }
         System.out.println();
         printBorder(0);
         //end message
-        System.out.printf("\n%d iterations completed.\nGame ends...\n", ctr);
+        if(players.size() == 1)
+            System.out.printf("\nPlayer %d (a.k.a. %s) is the winner in %d iterations with %d$ on the %s.\nGame ends...\n",
+                    players.get(0).getTurn(), players.get(0), ctr, players.get(0).getCash().getAmount(), players.get(0).getPiece().getSquare());
     }
 
 

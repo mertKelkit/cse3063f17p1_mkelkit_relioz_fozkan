@@ -27,9 +27,8 @@ public class Main {
         String[] shapeNames = getShapeNames();
         int initialCash = getInitialCash();
         ArrayList<Player> players = initializePlayers(nameOfPlayers, shapeNames, numOfPlayers, initialCash);
-        int numOfIterations = getNumOfIterations();
         MonopolyGame game = new MonopolyGame(players);
-        game.startGame(numOfIterations);
+        game.startGame();
 
     }
 
@@ -115,22 +114,6 @@ public class Main {
             System.err.println("Error reading file.");
         }
         return ret;
-    }
-
-    public static int getNumOfIterations() {
-        Scanner sc = new Scanner(System.in);
-        int numOfIterations;
-        System.out.print("Enter the number of iterations: ");
-        //Getting number of iterations
-        numOfIterations = sc.nextInt();
-        System.out.println("Observer entered \"" + numOfIterations + "\"");
-        //Control iteration number. Cannot be less or equal than 0.
-        while(numOfIterations <= 0) {
-            System.out.print("Please enter a bigger iteration number than 0: ");
-            numOfIterations = sc.nextInt();
-            System.out.println("Observer entered \"" + numOfIterations + "\"");
-        }
-        return numOfIterations;
     }
 
     public static int getInitialCash() {

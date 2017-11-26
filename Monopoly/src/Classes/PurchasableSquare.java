@@ -18,10 +18,6 @@ public abstract class PurchasableSquare extends Square {
         this.rent = rent;
     }
 
-    public int getRent() {
-        return rent;
-    }
-
     public Player getOwner() {
         return owner;
     }
@@ -45,4 +41,9 @@ public abstract class PurchasableSquare extends Square {
     public void setHasOwner(boolean hasOwner) {
         this.hasOwner = hasOwner;
     }
+
+    public int getRent() { return rent; }
+
+    public abstract int getRent(Player player, int dieValue);
+
 }

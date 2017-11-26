@@ -19,6 +19,7 @@ public class Board {
         Square[] squares = new Square[SIZE];
         ArrayList<String> lines = new ArrayList<>();
         boolean control = false;
+        //opening text file
         try {
             fileReader = new FileReader("Monopoly/src/Resources/Monopoly-Lots.csv");
             bufferedReader = new BufferedReader(fileReader);
