@@ -36,7 +36,6 @@ public class Board {
         }
         //creating each square objects
         int railRoadCtr = 1;
-        int squareCtr = 1;
         int listCounter = 0;
         for(int i=0; i<SIZE; i++) {
             if(i == 0)
@@ -71,12 +70,13 @@ public class Board {
             else if(i == 38)
                 squares[i] = new LuxuryTaxSquare("LuxuryTaxSquare", i);
             else {
-                LotSquare s = new LotSquare("Square" + squareCtr++, i);
+                LotSquare s = new LotSquare("Square" + (i+1), i);
                 squares[i] = s;
                 String[] splitted = lines.get(listCounter).split(";");
                 s.setIndex(Integer.parseInt(splitted[0]) - 1);
                 s.setPrice(Integer.parseInt(splitted[1]));
                 s.setRent(Integer.parseInt(splitted[2]));
+                listCounter++;
             }
         }
         return squares;

@@ -14,10 +14,13 @@ public class Main {
         int numOfPlayers = getNumberOfPlayers();
         String[] nameOfPlayers = getPlayerNames(numOfPlayers);
         String[] shapeNames = getShapeNames();
-        ArrayList<Player> players = initializePlayers(nameOfPlayers, shapeNames, numOfPlayers);
+        int initialCash = getInitialCash();
+        ArrayList<Player> players = initializePlayers(nameOfPlayers, shapeNames, numOfPlayers, initialCash);
         int numOfIterations = getNumOfIterations();
         MonopolyGame game = new MonopolyGame(players);
         game.startGame(numOfIterations);
+        /*Board b = new Board();
+        b.print();*/
 
     }
 
@@ -59,13 +62,13 @@ public class Main {
         return true;
     }
 
-    public static ArrayList<Player> initializePlayers(String[] playerNames, String[] shapeNames, int numOfPlayers) {
+    public static ArrayList<Player> initializePlayers(String[] playerNames, String[] shapeNames, int numOfPlayers, long initialCash) {
         ArrayList<Player> players = new ArrayList<>();
         for(int i=0; i<numOfPlayers; i++) {
             //Take a random piece shape for each player
             PieceShape shape = randomShape(shapeNames);
             //Then create Player instances with given names, turns, pieces with piece shapes and default starting squares
-            players.add(new Player(playerNames[i], i+1, new Piece(shape, Board.getSquare(0)), new Cash(200)));
+            players.add(new Player(playerNames[i], i+1, new Piece(shape, Board.getSquare(0)), new Cash((long)initialCash)));
         }
         return players;
     }
@@ -114,5 +117,16 @@ public class Main {
             numOfIterations = sc.nextInt();
         }
         return numOfIterations;
+    }
+
+    public static int getInitialCash() {
+        Scanner sc = new Scanner(System.in);
+        System.out.print("Please enter initial cash for players: ");
+        int initialCash = sc.nextInt();
+        while(initialCash <= 0) {
+            System.out.print("Please enter an amount larger than 0: ");
+            initialCash = sc.nextInt();
+        }
+        return initialCash;
     }
 }

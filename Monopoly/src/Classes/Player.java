@@ -110,7 +110,12 @@ public class Player {
             ownedSquares.add(square);
             square.setHasOwner(true);
             square.setOwner(this);
+            this.getCash().dropCash((long)square.getPrice());
+            System.out.println("Player " + this.getTurn() + " purchased " + square + ".");
         }
+        else {
+            System.out.println("Player " + this.getTurn() + " couldn't roll a die larger than 4 or has not enough money to buy " + square + "!");
+        }
+        System.out.println("Player " + this.getTurn() + " (a.k.a. " + this + ") has " + this.getCash().getAmount() + "$ right now.");
     }
-
 }

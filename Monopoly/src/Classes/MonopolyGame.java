@@ -12,8 +12,8 @@ public class MonopolyGame {
     public static final int NUM_OF_PIECES = 8;
     //Number of players in the current game
     //Dice
-    private Die die1;
-    private Die die2;
+    private static Die die1;
+    private static Die die2;
     //The board which the game is on it
     private Board mainBoard;
     //Players
@@ -22,9 +22,9 @@ public class MonopolyGame {
 
     public MonopolyGame(ArrayList<Player> players) {
         this.players = players;
-        mainBoard = new Board();
-        die1 = new Die();
-        die2 = new Die();
+        this.mainBoard = new Board();
+        this.die1 = new Die();
+        this.die2 = new Die();
     }
 
     //Setting up some instances
@@ -83,16 +83,13 @@ public class MonopolyGame {
                                     + players.get(j).getPiece().getSquare(), 50);
                             printWithDelay("Player " + players.get(j).getTurn() + " (" + players.get(j).getPiece().getShape() + ") is on " +
                                     players.get(j).getPiece().getSquare() + " sqaure at " + sdf.format(cal.getTime()), 500);
+                            int firstDieValue = die1.getFaceValue();
                             players.get(j).getPiece().getSquare().action(players.get(j));
                             if(players.get(j).isBankrupt()) {
-                                players.remove(j);
-                                for(int l=0; l<players.size(); l++) {
-                                    players.get(l).setTurn(players.indexOf(players.get(l))+1);
-                                }
-                                j--;
-                                continue;
+                                System.out.println("Player" + players.get(j).getTurn() + " (a.k.a. " + players.get(j) + ") is bankrupt. Game ends in " + i + " iterations...");
+                                System.exit(0);
                             }
-                            if(die1.getFaceValue() == die2.getFaceValue()) {
+                            if(firstDieValue == die2.getFaceValue()) {
                                 players.get(j).incrementDoubleCounter();
                                 if(players.get(j).getDoubleCounter() == 3) {
                                     printWithDelay("Player " + players.get(j).getTurn() + " rolled double three times in a row. " + players.get(j) + " is going to jail right now!", 75);
@@ -185,16 +182,13 @@ public class MonopolyGame {
                                     + players.get(j).getPiece().getSquare());
                             System.out.println("Player " + players.get(j).getTurn() + " (" + players.get(j).getPiece().getShape() + ") is on " +
                                     players.get(j).getPiece().getSquare() + " sqaure at " + sdf.format(cal.getTime()));
+                            int firstDieValue = die1.getFaceValue();
                             players.get(j).getPiece().getSquare().action(players.get(j));
                             if(players.get(j).isBankrupt()) {
-                                players.remove(j);
-                                for(int l=0; l<players.size(); l++) {
-                                    players.get(l).setTurn(players.indexOf(players.get(l))+1);
-                                }
-                                j--;
-                                continue;
+                                System.out.println("Player" + players.get(j).getTurn() + " (a.k.a. " + players.get(j) + ") is bankrupt. Game ends in " + i + " iterations...");
+                                System.exit(0);
                             }
-                            if (die1.getFaceValue() == die2.getFaceValue()) {
+                            if (firstDieValue == die2.getFaceValue()) {
                                 players.get(j).incrementDoubleCounter();
                                 if (players.get(j).getDoubleCounter() == 3) {
                                     printWithDelay("Player " + players.get(j).getTurn() + " rolled double three times in a row. " + players.get(j) + " is going to jail right now!", 75);
@@ -354,5 +348,9 @@ public class MonopolyGame {
             return true;
         }
         return false;
+    }
+
+    public static Die getDie1() {
+        return die1;
     }
 }
