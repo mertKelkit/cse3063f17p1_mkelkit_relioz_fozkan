@@ -1,125 +1,90 @@
-import re
-import glob
 import string
-
-import os
-
-import nltk
-import PyPDF2
-import numpy as np
+import glob
+import re
 
 from pdfminer.pdfinterp import PDFResourceManager, PDFPageInterpreter, resolve1
-from pdfminer.converter import TextConverter
 from pdfminer.pdfdocument import PDFDocument
+from pdfminer.converter import TextConverter
 from pdfminer.pdfparser import PDFParser
 from pdfminer.layout import LAParams
 from pdfminer.pdfpage import PDFPage
 from io import StringIO
 
+import nltk
+from nltk.corpus import stopwords
 
-pdf_paths = glob.glob('downloadable_input_files/*.pdf')
+import pandas as pd
+import numpy as np
 
+from sklearn.feature_extraction.text import CountVectorizer, TfidfVectorizer
 
-def convert_to_txt(file_path, pages):
-    pagenums = set(pages)
-    output = StringIO()
+#####################################################################################################################
+
+def extract_text(file_path):
+    out = StringIO()
+    # Preparing for reading pdf file
     manager = PDFResourceManager()
-    converter = TextConverter(manager, output, laparams=LAParams())
+    converter = TextConverter(manager, out, laparams=LAParams())
     interpreter = PDFPageInterpreter(manager, converter)
 
-    infile = open(file_path, 'rb')
-    fname = file_path.split('/')[1]
-    for page in PDFPage.get_pages(infile, pagenums):
-        interpreter.process_page(page)
-    infile.close()
-    converter.close()
-    text = output.getvalue()
-    output.close()
+    file = open(file_path, 'rb')
 
-    # write Content to .txt
-    text_file = open('temp_out/out_' + fname.replace('.pdf', '.txt'), 'w')
-    text = re.sub('\s\s+', ' ', text)
-    context = replace_newline(text)
-    text_file.write('%s' % context)
-    text_file.close()
-
-
-def replace_newline(text):
-    context = text.split(' ')
-    i = 0
-    for word in context:
-        context[i] = word.replace('\n', ' ')
-        i = i + 1
-    s = ' '.join(str(elem) for elem in context)
-    return s.lower()
-
-
-def get_page_nums(file_path):
-    pdf_file = open(file_path, 'rb')
-    parser = PDFParser(pdf_file)
+    # Getting page numbers as list
+    parser = PDFParser(file)
     document = PDFDocument(parser)
-    num_of_pages = resolve1(document.catalog['Pages'])['Count']
-    pdf_file.close()
-    return range(0, num_of_pages)
+    pages = set(range(resolve1(document.catalog['Pages'])['Count']))
 
-
-def get_stopword_list():
-    stopword_file = open('stopwords.txt', 'r')
-    stopword_str = stopword_file.read()
-    stopword_list = list(set(stopword_str.split('\n')))
-    stopword_file.close()
-    return stopword_list
-
-###############################################################################################
-
-stopword_list = get_stopword_list()
-
-for item in pdf_paths:
-    print('Processing ' + item + '...')
-    convert_to_txt(item, get_page_nums(item))
-
-print('All pdf files converted to text files.')
-
-temp_outputs = glob.glob('temp_out/*.txt')
-
-exclude = list(set(string.punctuation))
-exclude.append('∗')
-exclude.append('·')
-exclude.append('−')
-exclude.append('‡')
-exclude.append('”')
-exclude.append('“')
-for item in temp_outputs:
-    file = open(item, 'r')
-    text = file.read()
-    text_splitted = text.split(' ')
-
-    i = 0
-    for item_1 in text_splitted:
-        text_splitted[i] = ''.join([ch for ch in text_splitted[i] if not ch.isdigit()])
-        text_splitted[i] = ''.join(ch for ch in text_splitted[i] if ch not in exclude)
-        i = i + 1
-    text = ' '.join(text_splitted)
-    stopwords_removed = ' '.join([text for text in text.split() if text not in stopword_list])
+    # Getting each page's text
+    for page in PDFPage.get_pages(file, pages):
+        interpreter.process_page(page)
     file.close()
+    converter.close()
+    text = out.getvalue()
+    out.close()
 
-clear_list = stopwords_removed.split(' ')
-
-i = 0
-for item in clear_list:
-    # regexp for removing strings which has the length 1
-    clear_list[i] = re.sub(r'\b\w{1,1}\b', '', item)
-    print(clear_list[i])
-    i = i + 1
-
-
-
-
-
+    # Clearing the string
+    text = re.sub('\s\s+', ' ', text)
+    text = text.lower()
+    text = text.replace('\n', ' ')
+    exclude = set(string.punctuation)
+    exclude.add('®')
+    text = ''.join(ch for ch in text if ch not in exclude)
+    return text
 
 
+def get_stopwords():
+    f = open('stopwords.txt', 'r', encoding="utf8")
+    text = f.read()
+    words = text.split('\n')
+    f.close()
+    return words
 
 
-# removing temporary text files
-for path in temp_outputs:
-    os.remove(path)
+# #########################################                 FUNCTIONS                 #################################
+
+
+input_paths = glob.glob('input/*.pdf')
+
+extra_stopwords = get_stopwords()
+
+for path in input_paths:
+    full_text = extract_text(path)
+    tokens = nltk.word_tokenize(full_text)
+    # Removing stopwords here
+    stops = set(stopwords.words('english')).union(set(extra_stopwords))
+    filtered = [word for word in tokens if word not in stops]
+    # Removing the words which has the length one or less
+    for item in filtered:
+        if len(item) < 2:
+            filtered.remove(item)
+    # Calculating Term Frequency
+    vec = CountVectorizer(input='content', binary=False, ngram_range=(1, 1))
+    vec_fit = vec.fit_transform(filtered)
+    # Getting term frequency matrix and words
+    tf_matrix = vec_fit.toarray().sum(axis=0)
+    feature_names = vec.get_feature_names()
+    # Creating data for DataFrame
+    data = {'Words': feature_names,
+            'TF': tf_matrix}
+    df = pd.DataFrame(data, columns=['Words', 'TF'])
+    print(df)
