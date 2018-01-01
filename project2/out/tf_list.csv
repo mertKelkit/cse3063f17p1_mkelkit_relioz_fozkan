@@ -5,8 +5,8 @@ system;490
 operator;485
 algorithm;461
 packet;397
-node;391
 traffic;391
+node;391
 link;348
 price;205
 handover;199
@@ -17,13 +17,13 @@ adaptive;161
 delay;153
 area;150
 performance;146
-market;143
 burst;143
+market;143
 constellation;142
 hop;142
 flow;138
-change;137
 load;137
+change;137
 technique;135
 table;132
 leo;131
@@ -44,7 +44,7 @@ mechanism;106
 isls;105
 route;104
 throughput;102
-drop;101
 scheme;101
+drop;101
 parameter;100
 ratio;99

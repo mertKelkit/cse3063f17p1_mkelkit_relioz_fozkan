@@ -17,6 +17,7 @@ from nltk.corpus import stopwords
 
 import pandas as pd
 
+# For wordclouds
 import matplotlib.pyplot as plt
 from wordcloud import WordCloud
 
@@ -82,25 +83,34 @@ for path in input_paths:
     print('>> Processing ' + path)
     full_text = extract_text(path)
     tokens = nltk.word_tokenize(full_text)
+    # Using lemmatizer
     tokens = [lemma.lemmatize(word) for word in tokens]
     # Removing stopwords here
     filtered = [word for word in tokens if word not in stops]
+    # Removing words which has the length smaller than 2
+    filtered = [x for x in filtered if len(x) > 1]
+    # Removing words which contains any digit
+    filtered = [x for x in filtered if not any(x1.isdigit() for x1 in x)]
     # Calculating Term Frequency
     tf_vectorizer = CountVectorizer(input='content', binary=False, ngram_range=(1, 1))
     tf_vec_fit = tf_vectorizer.fit_transform(filtered)
-    # Getting term frequency matrix and words
+    # Getting term frequency vector and words
     tf_vector = tf_vec_fit.toarray().sum(axis=0).tolist()
     feature_names = tf_vectorizer.get_feature_names()
+    # Adding words and their term frequencies to the tf dictionary
     for i in range(len(feature_names)):
         if feature_names[i] not in tf_dict.keys():
             tf_dict[feature_names[i]] = tf_vector[i]
         else:
             tf_dict[feature_names[i]] += tf_vector[i]
-    # Storing texts of all document
+
+    # Storing texts of all documents
     all_docs[path] = list(set(filtered))
 
+# TfIdf calculation
 for word in list(tf_dict.keys()):
     word_counter = 0
+    # Checking how many documents include 'word'
     for doc in list(all_docs.values()):
         if word in doc:
             word_counter += 1
@@ -116,7 +126,7 @@ df = df.sort_values('TF', ascending=False)
 df[:50].to_csv('out/tf_list.csv', encoding='utf-8', sep=';', mode='w', index=False, header=False)
 print('\n>> Term Frequency List is ready as a csv file...\n')
 
-# Creating term frequency data for DataFrame
+# Creating tfidf data for DataFrame
 tfidf_data = {'Words': list(tfidf_dict.keys()),
               'TfIdf': list(tfidf_dict.values())}
 df = pd.DataFrame(tfidf_data, columns=['Words', 'TfIdf'])
@@ -132,6 +142,7 @@ with open('out/tf_list.csv', newline='\n') as csvfile:
         tf_first_50_dict[row[0]] = float(row[1])
 csvfile.close()
 
+# Collecting data for tfidf word cloud
 tfidf_first_50_dict = {}
 with open('out/tfidf_list.csv', newline='\n') as csvfile:
     reader = csv.reader(csvfile, delimiter=';')
@@ -145,3 +156,10 @@ tf_cloud = WordCloud(background_color='White', relative_scaling=0.7, width=1366,
 plt.imshow(tf_cloud)
 plt.axis('off')
 plt.savefig('out/tf_wordCloud.pdf', format='pdf')
+
+# Word cloud for tf idf
+tfidf_cloud = WordCloud(background_color='White', relative_scaling=0.7, width=1366,
+                        height=768).generate_from_frequencies(tfidf_first_50_dict)
+plt.imshow(tfidf_cloud)
+plt.axis('off')
+plt.savefig('out/tfidf_wordCloud.pdf', format='pdf')
