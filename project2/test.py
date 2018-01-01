@@ -2,6 +2,7 @@ import string
 import glob
 import re
 import csv
+import math
 
 from pdfminer.pdfinterp import PDFResourceManager, PDFPageInterpreter, resolve1
 from pdfminer.pdfdocument import PDFDocument
@@ -19,9 +20,9 @@ import pandas as pd
 import matplotlib.pyplot as plt
 from wordcloud import WordCloud
 
-from sklearn.feature_extraction.text import CountVectorizer, TfidfVectorizer
+from sklearn.feature_extraction.text import CountVectorizer
 
-#####################################################################################################################
+#######################################################################################################################
 
 
 def extract_text(file_path):
@@ -71,7 +72,11 @@ extra_stopwords = get_stopwords()
 stops = set(stopwords.words('english')).union(set(extra_stopwords))
 
 tf_dict = {}
+tfidf_dict = {}
+all_docs = {}
+
 lemma = nltk.wordnet.WordNetLemmatizer()
+doc_count = len(input_paths)
 
 for path in input_paths:
     print('>> Processing ' + path)
@@ -80,22 +85,28 @@ for path in input_paths:
     tokens = [lemma.lemmatize(word) for word in tokens]
     # Removing stopwords here
     filtered = [word for word in tokens if word not in stops]
-    # Removing the words which has the length one or less
-    for item in filtered:
-        if len(item) < 2:
-            filtered.remove(item)
     # Calculating Term Frequency
-    vec = CountVectorizer(input='content', binary=False, ngram_range=(1, 1))
-    vec_fit = vec.fit_transform(filtered)
+    tf_vectorizer = CountVectorizer(input='content', binary=False, ngram_range=(1, 1))
+    tf_vec_fit = tf_vectorizer.fit_transform(filtered)
     # Getting term frequency matrix and words
-    tf_vector = vec_fit.toarray().sum(axis=0).tolist()
-    feature_names = vec.get_feature_names()
+    tf_vector = tf_vec_fit.toarray().sum(axis=0).tolist()
+    feature_names = tf_vectorizer.get_feature_names()
     for i in range(len(feature_names)):
         if feature_names[i] not in tf_dict.keys():
             tf_dict[feature_names[i]] = tf_vector[i]
         else:
             tf_dict[feature_names[i]] += tf_vector[i]
+    # Storing texts of all document
+    all_docs[path] = list(set(filtered))
 
+for word in list(tf_dict.keys()):
+    word_counter = 0
+    for doc in list(all_docs.values()):
+        if word in doc:
+            word_counter += 1
+    if word_counter != 0:
+        tfidf = tf_dict[word] * math.log(doc_count/word_counter)
+        tfidf_dict[word] = tfidf
 
 # Creating term frequency data for DataFrame
 tf_data = {'Words': list(tf_dict.keys()),
@@ -105,12 +116,27 @@ df = df.sort_values('TF', ascending=False)
 df[:50].to_csv('out/tf_list.csv', encoding='utf-8', sep=';', mode='w', index=False, header=False)
 print('\n>> Term Frequency List is ready as a csv file...\n')
 
+# Creating term frequency data for DataFrame
+tfidf_data = {'Words': list(tfidf_dict.keys()),
+              'TfIdf': list(tfidf_dict.values())}
+df = pd.DataFrame(tfidf_data, columns=['Words', 'TfIdf'])
+df = df.sort_values('TfIdf', ascending=False)
+df[:50].to_csv('out/tfidf_list.csv', encoding='utf-8', sep=';', mode='w', index=False, header=False)
+print('\n>> Tf-Idf List is ready as a csv file...\n')
+
 # Getting most frequent 50 words and their frequencies from the csv file in order to create a word cloud
 tf_first_50_dict = {}
 with open('out/tf_list.csv', newline='\n') as csvfile:
     reader = csv.reader(csvfile, delimiter=';')
     for row in reader:
         tf_first_50_dict[row[0]] = float(row[1])
+csvfile.close()
+
+tfidf_first_50_dict = {}
+with open('out/tfidf_list.csv', newline='\n') as csvfile:
+    reader = csv.reader(csvfile, delimiter=';')
+    for row in reader:
+        tfidf_first_50_dict[row[0]] = float(row[1])
 csvfile.close()
 
 # Word cloud for term frequency
